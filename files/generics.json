@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Papersito",
+    "type": "PAPER",
+    "inUse": false
+  },
+  {
+    "name": "Mastersito",
+    "type": "MASTER",
+    "inUse": false
+  },
+  {
+    "name": "Doctoralsito",
+    "type": "DOCTORAL",
+    "inUse": false
+  },
+  {
+    "name": "Budgetsito",
+    "type": "BUDGET",
+    "inUse": false
+  }
+]

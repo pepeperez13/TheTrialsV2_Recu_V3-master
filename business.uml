@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>business</OriginalElement>
+  <nodes>
+    <node x="314.0" y="249.0">business.TeamManager</node>
+    <node x="459.0" y="579.2645739910314">business.playerTypes</node>
+    <node x="0.0" y="216.0">business.EditionManager</node>
+    <node x="0.0" y="515.0">business.PlayerTypeOptions</node>
+    <node x="274.0" y="579.2645739910314">business.trialsTypes</node>
+    <node x="260.5" y="33.5">business.DataSourceOptions</node>
+    <node x="274.0" y="515.0">business.ManagersTrials</node>
+    <node x="20.50000000000003" y="0.0">business.Edition</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="business.TeamManager" target="business.DataSourceOptions" relationship="DEPENDENCY">
+      <point x="0.0" y="-94.0" />
+      <point x="434.0" y="191.0" />
+      <point x="377.0" y="191.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="business.EditionManager" target="business.Edition" relationship="CREATE">
+      <point x="-73.5" y="-127.0" />
+      <point x="73.5" y="191.0" />
+      <point x="130.50000000000003" y="191.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="business.EditionManager" target="business.DataSourceOptions" relationship="DEPENDENCY">
+      <point x="73.5" y="-127.0" />
+      <point x="220.5" y="191.0" />
+      <point x="377.0" y="191.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.9449152542372882" showDependencies="true" x="335.0" y="344.0" />
+  <SelectedNodes>
+    <node>business.playerTypes</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

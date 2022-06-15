@@ -1,0 +1,33 @@
+[
+  {
+    "year": 2022.0,
+    "numPlayers": 3.0,
+    "numTrials": 3.0,
+    "trialsNames": [
+      "Papersito",
+      "Doctoralsito",
+      "Budgetsito"
+    ]
+  },
+  {
+    "year": 2050.0,
+    "numPlayers": 4.0,
+    "numTrials": 4.0,
+    "trialsNames": [
+      "Papersito",
+      "Mastersito",
+      "Doctoralsito",
+      "Budgetsito"
+    ]
+  },
+  {
+    "year": 2018,
+    "numPlayers": 3,
+    "numTrials": 3,
+    "trialsNames": [
+      "Papersito",
+      "Mastersito",
+      "Doctoralsito"
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "nameEntity": "Entidad",
+    "amount": 500000,
+    "name": "Budgetsito",
+    "type": "BUDGET",
+    "inUse": true
+  }
+]

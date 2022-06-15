@@ -1,0 +1,12 @@
+[
+  {
+    "magazineName": "Journal",
+    "quartile": "Q2",
+    "acceptedProbability": 40,
+    "revisedProbability": 40,
+    "rejectedProbability": 20,
+    "name": "Papersito",
+    "type": "PAPER",
+    "inUse": true
+  }
+]
