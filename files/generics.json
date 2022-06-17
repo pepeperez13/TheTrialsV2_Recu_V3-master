@@ -1,22 +1,27 @@
 [
   {
-    "name": "Papersito",
+    "magazineName": "Pororo",
+    "quartile": "Q2",
+    "acceptedProbability": 50.0,
+    "revisedProbability": 30.0,
+    "rejectedProbability": 20.0,
+    "name": "Pruebilla",
     "type": "PAPER",
     "inUse": false
   },
   {
-    "name": "Mastersito",
-    "type": "MASTER",
-    "inUse": false
-  },
-  {
-    "name": "Doctoralsito",
-    "type": "DOCTORAL",
-    "inUse": false
-  },
-  {
+    "nameEntity": "Entidad",
+    "amount": 400000.0,
     "name": "Budgetsito",
     "type": "BUDGET",
+    "inUse": false
+  },
+  {
+    "nom": "Loloe",
+    "numberCredits": 90,
+    "probability": 87,
+    "name": "Mastersito",
+    "type": "MASTER",
     "inUse": false
   }
 ]

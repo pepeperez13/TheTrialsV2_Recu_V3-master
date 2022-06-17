@@ -1,11 +1,12 @@
 package persistance.JSON;
 
+import business.PlayerTypeOptions;
+import business.TrialTypeOptions;
 import business.playerTypes.Doctor;
 import business.playerTypes.Engineer;
 import business.playerTypes.Master;
 import business.playerTypes.Player;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import persistance.TeamDAO;
 
@@ -51,31 +52,15 @@ public class TeamJsonDAO implements TeamDAO {
     public boolean create (Player player) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            //GsonBuilder builder = new GsonBuilder();
-            //builder.registerTypeAdapter(Player.class, new JsonDeserializerWithInheritance<Player>());
-            //Gson gson = builder.setPrettyPrinting().create();
+
             String lines = Files.readString(path);
             LinkedList<Player> playersList = new LinkedList<>();
             // Solo leeremos elementos si el json no está vacío
+
             if (gson.fromJson(lines, LinkedList.class) != null) {
                 playersList = gson.fromJson(lines, LinkedList.class);
             }
             playersList.add(player);
-            /*
-            int i = 0;
-            for (Player player1: playersList) {
-                Player newPlayer;
-                if (player1 instanceof Engineer engineer) {
-                    newPlayer = engineer;
-                }else if (player1 instanceof Master) {
-                    newPlayer = new Master(player1.getName(), player1.getPI());
-                } else {
-                    newPlayer = new Doctor(player1.getName(), player1.getPI());
-                }
-                playersList.set(i, newPlayer);
-                i++;
-            }
-             */
             String jsonData = gson.toJson(playersList, LinkedList.class);
             Files.write(path, jsonData.getBytes());
             return true;
@@ -93,10 +78,23 @@ public class TeamJsonDAO implements TeamDAO {
         try{
             Gson gson = new Gson();
             String lines = Files.readString(path);
-            Type listType = new TypeToken<List<Player>>(){}.getType();
+            JsonElement element = JsonParser.parseString(lines);
+            JsonArray array = element.getAsJsonArray();
+            Player player;
             List<Player> playersList = new LinkedList<>();
-            if (gson.fromJson(lines, listType) != null) {
-                playersList = gson.fromJson(lines, listType);
+
+            for (int i = 0; i < array.size(); ++i) {
+                JsonObject object = (JsonObject) array.get(i);
+                JsonPrimitive type = object.getAsJsonPrimitive("type");
+                // Distinguimos entre el tipo para poder guardar en la lista que tipo concreto es
+                if (type.getAsString().equals("ENGINEER")) {
+                    player = new Engineer(object.getAsJsonPrimitive("name").getAsString(), object.getAsJsonPrimitive("PI").getAsInt());
+                } else if (type.getAsString().equals("MASTER")) {
+                    player = new Master(object.getAsJsonPrimitive("name").getAsString(), object.getAsJsonPrimitive("PI").getAsInt());
+                } else {
+                    player = new Doctor(object.getAsJsonPrimitive("name").getAsString(), object.getAsJsonPrimitive("PI").getAsInt());
+                }
+                playersList.add(player);
             }
             return new LinkedList<>(playersList);
         } catch (IOException e) {
@@ -136,25 +134,19 @@ public class TeamJsonDAO implements TeamDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             List<Player> players = readAll();
             players.remove(index);
-            players.add(index, player);
+            if (player instanceof  Engineer engineer) {
+                players.add(index, engineer);
+            } else if (player instanceof Master master) {
+                players.add(index, master);
+            } else if (player instanceof Doctor doctor) {
+                players.add(index, doctor);
+            }
             String jsonData = gson.toJson(players, List.class);
             Files.write(path, jsonData.getBytes());
             return true;
         } catch (IOException e) {
             return false;
         }
-    }
-
-    @Override
-    public Player deserialize (String texto) {
-        Gson gson = new Gson();
-        return gson.fromJson(texto, Player.class);
-    }
-
-    @Override
-    public String serialize(Player player) {
-        Gson gson = new Gson();
-        return gson.toJson(player);
     }
 
     /**

@@ -1,0 +1,154 @@
+package persistance.JSON;
+
+import business.trialsTypes.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.LinkedList;
+import java.util.List;
+
+
+
+
+public class TrialsJsonDAO {
+
+    private final String filename = "trials.json";
+    private static final String route = "files/trials.json";
+    private static final Path path = Path.of(route);
+    private File file = new File("files", filename);
+
+
+    public static void main (String[] args) {
+        GenericTrial trial1 = new PaperPublication("PruebaPaper", "M1", "Q2", 60, 20, 20, false);
+        GenericTrial trial2 = new MasterStudies("PruebaMaster", "NOM", 90, 70, false);
+        GenericTrial trial3 = new DoctoralThesis("PruebaDoctoral", "Science", 7, false);
+        GenericTrial trial4 = new Budget("PruebaBUdget", "Entidad", 400000, false);
+
+        create(trial1);
+        create(trial2);
+        create(trial3);
+        create(trial4);
+    }
+
+    /**
+     * Método constructor que crea un fichero CSV nuevo, en caso de no existir
+     */
+    public TrialsJsonDAO () {
+        try {
+            if(!file.exists()){
+                file.createNewFile();
+                Files.write(Path.of(String.valueOf(path)), "[]".getBytes());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * Crea un nuevo master y lo escribe en el fichero
+     //* @param masterStudies master que se desea escribir
+     * @return booleano que indica si se ha escrito correctamente
+     */
+    public static boolean create(GenericTrial genericTrial) {
+        try {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String lines = Files.readString(path);
+            LinkedList<GenericTrial> trialsList = new LinkedList<>();
+            // Solo leeremos elementos si el json no está vacío
+            if (gson.fromJson(lines, LinkedList.class) != null) {
+                trialsList = gson.fromJson(lines, LinkedList.class);
+            }
+            trialsList.add(genericTrial);
+            String jsonData = gson.toJson(trialsList, LinkedList.class);
+            Files.write(path, jsonData.getBytes());
+            return true;
+        }catch (IOException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Lee todos los elementos de un fichero JSON
+     * @return Lista con los objetos de todos los elementos leídos
+     */
+    public static LinkedList<GenericTrial> readAll() {
+        try{
+            Gson gson = new Gson();
+            String lines = Files.readString(path);
+            Type listType = new TypeToken<List<GenericTrial>>(){}.getType();
+            List<GenericTrial> trialsList = new LinkedList<>();
+            if (gson.fromJson(lines, listType) != null) {
+                trialsList = gson.fromJson(lines, listType);
+            }
+            return new LinkedList<>(trialsList);
+        } catch (IOException e) {
+            return new LinkedList<>();
+        }
+    }
+
+    /**
+     * Obtiene el objeto a través de la posición en la que está escrito en el fichero
+     * @param index posición en el fichero
+     * @return objeto del Master solicitado
+     */
+    public static GenericTrial findByIndex(int index) {
+        try{
+            Gson gson = new Gson();
+            String lines = Files.readString(path);
+            Type listType = new TypeToken<List<GenericTrial>>(){}.getType();
+            List<GenericTrial> trialsList = gson.fromJson(lines, listType);
+            return trialsList.get(index - 1);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Elimina un dato en una posición del fichero
+     * @param index posición del dato a eliminar
+     * @return booleano que indica si se ha eliminado correctamente
+     */
+    public static boolean delete(int index) {
+        try {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            List<GenericTrial> trials = readAll();
+            trials.remove(index);
+            String jsonData = gson.toJson(trials, List.class);
+            Files.write(path, jsonData.getBytes());
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Actualiza una posición del fichero
+     * @param index Posición del dato que se quiere modificar
+     * @param genericTrial Nuevo objeto que quiere escribirse en la posicion
+     * @return booleano que indica si se ha modificado correctamente
+     */
+    public static boolean changeLine(int index, GenericTrial genericTrial) {
+        try {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            List<GenericTrial> trials = readAll();
+            trials.remove(index);
+            trials.add(index, genericTrial);
+            String jsonData = gson.toJson(trials, List.class);
+            Files.write(path, jsonData.getBytes());
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+
+}

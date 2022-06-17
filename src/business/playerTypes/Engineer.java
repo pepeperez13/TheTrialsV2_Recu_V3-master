@@ -1,5 +1,8 @@
 package business.playerTypes;
 
+import business.PlayerTypeOptions;
+import presentation.ViewController;
+
 /**
  * Define un tipo de jugador Engineer, que hereda del genérico Player
  * @author Abraham Cedeño
@@ -13,7 +16,7 @@ public class Engineer extends Player{
      * @param PI PI del ingeniero
      */
     public Engineer (String name, int PI){
-        super(name, PI);
+        super(name, PI, PlayerTypeOptions.ENGINEER);
     }
 
     /**
@@ -68,5 +71,10 @@ public class Engineer extends Player{
     @Override
     public boolean checkUpdateStatus() {
         return super.checkUpdateStatus();
+    }
+
+    @Override
+    public void showInfo (ViewController view) {
+        view.showMessage(getName()+", Engineer. PI count: " + getPI());
     }
 }

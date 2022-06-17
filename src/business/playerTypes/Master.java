@@ -1,5 +1,8 @@
 package business.playerTypes;
 
+import business.PlayerTypeOptions;
+import presentation.ViewController;
+
 /**
  * Define un tipo de jugador Master, que hereda de Engineer
  * @author Abraham Cedeño
@@ -13,7 +16,7 @@ public class Master extends Player {
      * @param PI PI del master
      */
     public Master (String name, int PI) {
-        super(name, PI);
+        super(name, PI, PlayerTypeOptions.MASTER);
     }
 
     /**
@@ -65,5 +68,11 @@ public class Master extends Player {
     @Override
     public String getName () {
         return super.getName();
+    }
+
+
+    @Override
+    public void showInfo(ViewController view) {
+        view.showMessage(getName()+", Master. PI count: " + getPI());
     }
 }

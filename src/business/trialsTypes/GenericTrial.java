@@ -1,6 +1,8 @@
 package business.trialsTypes;
 
+import business.TeamManager;
 import business.TrialTypeOptions;
+import presentation.ViewController;
 
 /**
  * Clase que contiene el nombre y el tipo de prueba
@@ -50,5 +52,9 @@ public class GenericTrial {
 
     public void setUsage(boolean use) {
         inUse = use;
+    }
+
+    public void playTrial (TeamManager teamManager, ViewController viewController) {
+
     }
 }

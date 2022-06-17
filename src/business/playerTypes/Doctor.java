@@ -1,5 +1,8 @@
 package business.playerTypes;
 
+import business.PlayerTypeOptions;
+import presentation.ViewController;
+
 /**
  * Define un tipo de jugador Doctor, que hereda del genérico Player
  * @author Abraham Cedeño
@@ -14,7 +17,7 @@ public class Doctor extends Player{
      * @param PI PI del doctor
      */
     public Doctor (String name, int PI) {
-        super(name, PI);
+        super(name, PI, PlayerTypeOptions.DOCTOR);
     }
 
     /**
@@ -53,4 +56,11 @@ public class Doctor extends Player{
     public int getPI () {
         return super.getPI();
     }
+
+
+    @Override
+    public void showInfo(ViewController view) {
+        view.showMessage(getName()+", PhD. PI count: " + getPI());
+    }
+
 }

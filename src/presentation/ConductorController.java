@@ -73,6 +73,7 @@ public class ConductorController {
                     view.showMessage("\nExecution ended... Players lost!");
                     teamManager.removeAllPlayers();
                     finalIndex = editionManager.getEditionCurrentYear().getNumTrials(); // SI han muerto todos los jugadores, la proxima edicion se tendrá que empezar de nuevo
+                    ControllerManager.setEndProgram();
                 } else {
                     view.showMessage("\nSaving & shutting down...");
                     //ControllerManager.setEndProgram();

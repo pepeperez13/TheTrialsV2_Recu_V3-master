@@ -1,7 +1,7 @@
 [
   {
     "nameEntity": "Entidad",
-    "amount": 500000,
+    "amount": 400000,
     "name": "Budgetsito",
     "type": "BUDGET",
     "inUse": true

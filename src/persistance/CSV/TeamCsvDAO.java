@@ -141,16 +141,6 @@ public class TeamCsvDAO implements TeamDAO {
         }
     }
 
-    @Override
-    public Player deserialize(String texto) {
-        return null;
-    }
-
-    @Override
-    public String serialize(Player player) {
-        return null;
-    }
-
     /**
      * Vacía por completo del fichero de jugadores
      * @return booleano que indica si se ha vaciado el fichero correctamente

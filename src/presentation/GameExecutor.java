@@ -32,6 +32,16 @@ public class GameExecutor {
      * @param genericTrial prueba a ejecutar
      */
     public void playTrial (GenericTrial genericTrial)  {
+        // El equipo entero se enfrenta a la prueba, mostrandose el
+        // desempeño de cada jugador. Actualizandose los PI de los jugadores
+        genericTrial.playTrial(teamManager,view);
+
+        // Se muestran las evoluciones
+        LinkedList<String> changedType = checkUpdateStatus();
+        for (String line: changedType) {
+            view.showMessageLine(line);
+        }
+        /*
         if (genericTrial instanceof PaperPublication paper) {
             playPaper(paper);
         } else if (genericTrial instanceof MasterStudies master) {
@@ -41,6 +51,8 @@ public class GameExecutor {
         } else if (genericTrial instanceof Budget budget) {
             playBudget(budget);
         }
+
+         */
     }
 
     /*Empieza gestión de budget*/
@@ -50,6 +62,7 @@ public class GameExecutor {
      */
     private void playBudget (Budget budget)  {
         boolean passed;
+        /*
         // Calculamos si el equipo recibe el budget o no
         if (teamManager.getPITeam() > (int) (Math.log(budget.getAmount()) / Math.log(2))) {
             view.showMessage("The research group got the budget!\n");
@@ -58,9 +71,11 @@ public class GameExecutor {
             view.showMessage("The research group didn't get the budget!\n");
             passed = false;
         }
+        */
+        budget.playTrial(teamManager, view);
         // Actualizamos el PI de todos los jugadores y mostramos
-        updatePiTeam(teamManager, passed);
         for (Player player : teamManager.getPlayers()) {
+            /*
             if (player instanceof Engineer) {
                 view.showMessage(player.getName()+", Engineer. PI count: " + player.getPI());
             } else if (player instanceof Master) {
@@ -68,6 +83,8 @@ public class GameExecutor {
             } else if (player instanceof Doctor) {
                 view.showMessage(player.getName()+", PhD. PI count: " + player.getPI());
             }
+            */
+            player.showInfo(view);
         }
 
         // Mostramos todos los jugaodores que hayan evolucionado

@@ -1,11 +1,11 @@
 [
   {
-    "magazineName": "Journal",
+    "magazineName": "Pororo",
     "quartile": "Q2",
-    "acceptedProbability": 40,
-    "revisedProbability": 40,
+    "acceptedProbability": 50,
+    "revisedProbability": 30,
     "rejectedProbability": 20,
-    "name": "Papersito",
+    "name": "Pruebilla",
     "type": "PAPER",
     "inUse": true
   }

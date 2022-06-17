@@ -19,8 +19,6 @@ public class Main {
         viewController.showStartingMenu();
 
         do {
-
-            System.out.println("Hola");
             option = viewController.askForString("Pick a faction: ");
             if (option.equals("I")) {
                 dataSourceOptions = DataSourceOptions.CSV;

@@ -1,6 +1,10 @@
 package business.playerTypes;
 
 
+import business.PlayerTypeOptions;
+import business.TrialTypeOptions;
+import presentation.ViewController;
+
 /**
  * Clase abstracta que representará un jugador en general
  * @author Abraham Cedeño
@@ -9,10 +13,14 @@ package business.playerTypes;
 public class Player {
     private String name;
     private int PI;
+    // Atributo que se usa exclusivamente al escribir los jugadores en un JSON. Para los csv no hace falta ya que se añade un campo de más en el teamCsvDao, pero
+    // no se como hacer para añadir ese mismo campo en json
+    private PlayerTypeOptions type;
 
-    public Player(String name, int PI) {
+    public Player(String name, int PI, PlayerTypeOptions type) {
         this.name = name;
         this.PI = PI;
+        this.type = type;
     }
 
     /**
@@ -67,4 +75,11 @@ public class Player {
         }
     }
 
+    public void showInfo (ViewController view) {
+
+    }
+
+    public void setType(PlayerTypeOptions type) {
+        this.type = type;
+    }
 }

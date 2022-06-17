@@ -1,6 +1,10 @@
 package business.trialsTypes;
 
+import business.TeamManager;
 import business.TrialTypeOptions;
+import business.playerTypes.Doctor;
+import business.playerTypes.Player;
+import presentation.ViewController;
 
 /**
  * Representa el tipo de prueba Doctoral
@@ -58,5 +62,35 @@ public class DoctoralThesis extends GenericTrial{
 
     public void setUsage(boolean use) {
         super.setUsage(use);
+    }
+
+    @Override
+    public void playTrial(TeamManager teamManager, ViewController view) {
+        double result = 0;
+        int j = 0;
+
+        // Para todos los jugadores, comprobamos si pasan la prueba y gestionamos sus PI y estado
+        for (Player player: teamManager.getPlayers()) {
+            if (player.getPI() != 0) { // Solo jugarán una prueba los jugadores que aún no hayan muerto
+                // Calculamos resultado
+                for (int i = 1; i <= getDifficulty(); i++) {
+                    result = result + ((2 * i) - 1);
+                }
+                // Comprobamos si pasa y actualizamos PI, mostrandolo
+                if (player.getPI() > result) {
+                    if (player instanceof Doctor) {
+                        player.setPi(10);
+                    } else {
+                        player.incrementPI(5);
+                    }
+                    view.showMessage(player.getName() + " was successful. Congrats! PI count: " + player.getPI());
+                } else {
+                    player.decrementPI(5);
+                    view.showMessage(player.getName() + " was not successful. Sorry... PI count: " + player.getPI());
+                }
+                teamManager.updatePlayer(j, player);
+                j++;
+            }
+        }
     }
 }

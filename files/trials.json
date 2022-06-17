@@ -1,0 +1,44 @@
+[
+  {
+    "magazineName": "M1",
+    "quartile": "Q2",
+    "acceptedProbability": 60.0,
+    "revisedProbability": 20.0,
+    "rejectedProbability": 20.0,
+    "name": "PruebaPaper",
+    "type": "PAPER",
+    "inUse": false
+  },
+  {
+    "magazineName": "M1",
+    "quartile": "Q2",
+    "acceptedProbability": 60.0,
+    "revisedProbability": 20.0,
+    "rejectedProbability": 20.0,
+    "name": "PruebaPaper",
+    "type": "PAPER",
+    "inUse": false
+  },
+  {
+    "nom": "NOM",
+    "numberCredits": 90.0,
+    "probability": 70.0,
+    "name": "PruebaMaster",
+    "type": "MASTER",
+    "inUse": false
+  },
+  {
+    "fieldOfStudy": "Science",
+    "difficulty": 7.0,
+    "name": "PruebaDoctoral",
+    "type": "DOCTORAL",
+    "inUse": false
+  },
+  {
+    "nameEntity": "Entidad",
+    "amount": 400000,
+    "name": "PruebaBUdget",
+    "type": "BUDGET",
+    "inUse": false
+  }
+]
