@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\files\doctorals.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\files\editions.csv">
           <value>
             <Attribute>
@@ -39,6 +46,13 @@
           </value>
         </entry>
         <entry key="\files\team.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\files\trials.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

@@ -1,9 +1,13 @@
 package persistance.JSON;
 
+import business.playerTypes.Doctor;
+import business.playerTypes.Engineer;
+import business.playerTypes.Master;
+import business.playerTypes.Player;
 import business.trialsTypes.*;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import persistance.TrialsDAO;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,25 +20,40 @@ import java.util.List;
 
 
 
-public class TrialsJsonDAO {
+public class TrialsJsonDAO implements TrialsDAO {
 
     private final String filename = "trials.json";
     private static final String route = "files/trials.json";
     private static final Path path = Path.of(route);
     private File file = new File("files", filename);
 
-
+/*
     public static void main (String[] args) {
         GenericTrial trial1 = new PaperPublication("PruebaPaper", "M1", "Q2", 60, 20, 20, false);
         GenericTrial trial2 = new MasterStudies("PruebaMaster", "NOM", 90, 70, false);
         GenericTrial trial3 = new DoctoralThesis("PruebaDoctoral", "Science", 7, false);
         GenericTrial trial4 = new Budget("PruebaBUdget", "Entidad", 400000, false);
 
-        create(trial1);
-        create(trial2);
-        create(trial3);
-        create(trial4);
-    }
+        //create(trial1);
+        //create(trial2);
+        //create(trial3);
+        //create(trial4);
+
+
+        /*
+        for (GenericTrial genericTrial: readAll()) {
+            System.out.println(genericTrial.getName());
+        }
+        */
+
+        //System.out.println(findByIndex(3).getName());
+
+        //delete(0);
+        //changeLine(4, new PaperPublication("Change", "Change", "Q1", 70, 20, 10, false));
+
+
+    //}
+
 
     /**
      * Método constructor que crea un fichero CSV nuevo, en caso de no existir
@@ -57,7 +76,8 @@ public class TrialsJsonDAO {
      //* @param masterStudies master que se desea escribir
      * @return booleano que indica si se ha escrito correctamente
      */
-    public static boolean create(GenericTrial genericTrial) {
+    @Override
+    public boolean create(GenericTrial genericTrial) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String lines = Files.readString(path);
@@ -79,15 +99,47 @@ public class TrialsJsonDAO {
      * Lee todos los elementos de un fichero JSON
      * @return Lista con los objetos de todos los elementos leídos
      */
-    public static LinkedList<GenericTrial> readAll() {
+    @Override
+    public LinkedList<GenericTrial> readAll() {
         try{
-            Gson gson = new Gson();
             String lines = Files.readString(path);
-            Type listType = new TypeToken<List<GenericTrial>>(){}.getType();
+            JsonElement element = JsonParser.parseString(lines);
+            JsonArray array = element.getAsJsonArray();
+            GenericTrial trial;
             List<GenericTrial> trialsList = new LinkedList<>();
-            if (gson.fromJson(lines, listType) != null) {
-                trialsList = gson.fromJson(lines, listType);
+
+            for (int i = 0; i < array.size(); ++i) {
+                JsonObject object = (JsonObject) array.get(i);
+                JsonPrimitive type = object.getAsJsonPrimitive("type");
+                // Distinguimos entre el tipo para poder guardar en la lista que tipo concreto es
+                if (type.getAsString().equals("PAPER")) {
+                    trial = new PaperPublication(object.getAsJsonPrimitive("name").getAsString(),
+                            object.getAsJsonPrimitive("magazineName").getAsString(),
+                            object.getAsJsonPrimitive("quartile").getAsString(),
+                            object.getAsJsonPrimitive("acceptedProbability").getAsInt(),
+                            object.getAsJsonPrimitive("revisedProbability").getAsInt(),
+                            object.getAsJsonPrimitive("rejectedProbability").getAsInt(),
+                            object.getAsJsonPrimitive("inUse").getAsBoolean());
+                } else if (type.getAsString().equals("MASTER")) {
+                    trial = new MasterStudies(object.getAsJsonPrimitive("name").getAsString(),
+                            object.getAsJsonPrimitive("nom").getAsString(),
+                            object.getAsJsonPrimitive("numberCredits").getAsInt(),
+                            object.getAsJsonPrimitive("probability").getAsInt(),
+                            object.getAsJsonPrimitive("inUse").getAsBoolean());
+                } else if (type.getAsString().equals("DOCTORAL")){
+                    trial = new DoctoralThesis(object.getAsJsonPrimitive("name").getAsString(),
+                            object.getAsJsonPrimitive("fieldOfStudy").getAsString(),
+                            object.getAsJsonPrimitive("difficulty").getAsInt(),
+                            object.getAsJsonPrimitive("name").getAsBoolean());
+                } else {
+                    trial = new Budget(object.getAsJsonPrimitive("name").getAsString(),
+                            object.getAsJsonPrimitive("nameEntity").getAsString(),
+                            object.getAsJsonPrimitive("amount").getAsInt(),
+                            object.getAsJsonPrimitive("inUse").getAsBoolean());
+                }
+                trialsList.add(trial);
             }
+
             return new LinkedList<>(trialsList);
         } catch (IOException e) {
             return new LinkedList<>();
@@ -99,7 +151,8 @@ public class TrialsJsonDAO {
      * @param index posición en el fichero
      * @return objeto del Master solicitado
      */
-    public static GenericTrial findByIndex(int index) {
+    @Override
+    public GenericTrial findByIndex(int index) {
         try{
             Gson gson = new Gson();
             String lines = Files.readString(path);
@@ -116,7 +169,8 @@ public class TrialsJsonDAO {
      * @param index posición del dato a eliminar
      * @return booleano que indica si se ha eliminado correctamente
      */
-    public static boolean delete(int index) {
+    @Override
+    public boolean delete(int index) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             List<GenericTrial> trials = readAll();
@@ -136,7 +190,8 @@ public class TrialsJsonDAO {
      * @param genericTrial Nuevo objeto que quiere escribirse en la posicion
      * @return booleano que indica si se ha modificado correctamente
      */
-    public static boolean changeLine(int index, GenericTrial genericTrial) {
+    @Override
+    public boolean changeLine(int index, GenericTrial genericTrial) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             List<GenericTrial> trials = readAll();

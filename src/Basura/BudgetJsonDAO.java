@@ -1,4 +1,4 @@
-package persistance.JSON;
+package Basura;
 
 import business.trialsTypes.Budget;
 import com.google.gson.Gson;

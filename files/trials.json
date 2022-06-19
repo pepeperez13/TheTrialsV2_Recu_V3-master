@@ -1,44 +1,34 @@
 [
   {
-    "magazineName": "M1",
+    "magazineName": "Journal",
     "quartile": "Q2",
-    "acceptedProbability": 60.0,
-    "revisedProbability": 20.0,
-    "rejectedProbability": 20.0,
-    "name": "PruebaPaper",
+    "acceptedProbability": 70,
+    "revisedProbability": 20,
+    "rejectedProbability": 10,
+    "name": "Papersito",
     "type": "PAPER",
-    "inUse": false
+    "inUse": true
   },
   {
-    "magazineName": "M1",
-    "quartile": "Q2",
-    "acceptedProbability": 60.0,
-    "revisedProbability": 20.0,
-    "rejectedProbability": 20.0,
-    "name": "PruebaPaper",
-    "type": "PAPER",
-    "inUse": false
-  },
-  {
-    "nom": "NOM",
-    "numberCredits": 90.0,
-    "probability": 70.0,
-    "name": "PruebaMaster",
+    "nom": "Mejor",
+    "numberCredits": 90,
+    "probability": 88,
+    "name": "Mastersito",
     "type": "MASTER",
-    "inUse": false
+    "inUse": true
   },
   {
     "fieldOfStudy": "Science",
-    "difficulty": 7.0,
-    "name": "PruebaDoctoral",
+    "difficulty": 7,
+    "name": "Doctoralsito",
     "type": "DOCTORAL",
     "inUse": false
   },
   {
     "nameEntity": "Entidad",
     "amount": 400000,
-    "name": "PruebaBUdget",
+    "name": "Budgetsito",
     "type": "BUDGET",
-    "inUse": false
+    "inUse": true
   }
 ]

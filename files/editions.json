@@ -1,12 +1,13 @@
 [
   {
     "year": 2022,
-    "numPlayers": 3,
-    "numTrials": 3,
+    "numPlayers": 4,
+    "numTrials": 4,
     "trialsNames": [
-      "Pruebilla",
-      "Budgetsito",
-      "Mastersito"
+      "Papersito",
+      "Mastersito",
+      "Doctoralsito",
+      "Budgetsito"
     ]
   }
 ]

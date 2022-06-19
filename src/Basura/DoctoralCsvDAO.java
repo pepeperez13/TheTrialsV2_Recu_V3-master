@@ -1,6 +1,6 @@
-package persistance.CSV;
+package Basura;
 
-import business.trialsTypes.MasterStudies;
+import business.trialsTypes.DoctoralThesis;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -8,20 +8,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Clase que gestiona la lectura y escritura del fichero CSV de los Master
+ * Clase que gestiona la lectura y escritura del fichero CSV de los doctorals
  * @author José Perez
  * @author Abraham Cedeño
  */
-public class MasterCsvDAO implements persistance.MasterDAO {
+public class DoctoralCsvDAO implements persistance.DoctoralDAO {
     private static final String separator = ",";
-    private final String fileName = "masters.csv";
+    private final String fileName = "doctorals.csv";
     private final String filePath = "files";
     private File file = new File(filePath, fileName);
 
     /**
      * Método constructor que crea un fichero CSV nuevo, en caso de no existir
      */
-    public MasterCsvDAO () {
+    public DoctoralCsvDAO () {
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -32,35 +32,34 @@ public class MasterCsvDAO implements persistance.MasterDAO {
     }
 
     /**
-     * Convierte un objeto de tipo Master a un String de CSV
-     * @param masterStudies objeto a convertir a string
+     * Convierte un objeto de tipo DoctoralThesis a un String de CSV
+     * @param doctoralThesis objeto a convertir a string
      * @return string del objeto
      */
-    private String masterToCsv(MasterStudies masterStudies) {
-        return masterStudies.getName() + separator + masterStudies.getNom() + separator + masterStudies.getNumberCredits() +
-                separator + masterStudies.getProbability() + separator + masterStudies.isInUse();
+    private String doctoralToCsv(DoctoralThesis doctoralThesis) {
+        return doctoralThesis.getName() + separator + doctoralThesis.getFieldOfStudy() + separator + doctoralThesis.getDifficulty() + separator + doctoralThesis.isInUse();
     }
 
     /**
-     * Método que crea un objeto de Master a partir de una línea de CSV
+     * Método que crea un objeto de DoctoralThesis a partir de una línea de CSV
      * @param csv Línea que queremos convertir
-     * @return Master pedido
+     * @return Doctoral pedido
      */
-    private MasterStudies masterFromCsv (String csv) {
+    private DoctoralThesis doctoralFromCsv (String csv) {
         String[] parts = csv.split(separator);
-        return new MasterStudies(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), Boolean.valueOf(parts[4]));
+        return new DoctoralThesis(parts[0], parts[1], Integer.parseInt(parts[2]), Boolean.valueOf(parts[3]));
     }
 
     /**
-     * Crea un nuevo master y lo escribe en el fichero
-     * @param masterStudies master que se desea escribir
+     * Crea un nuevo DoctoralThesis y lo escribe en el fichero
+     * @param doctoralThesis doctoral que se desea escribir
      * @return booleano que indica si se ha escrito correctamente
      */
     @Override
-    public boolean create(MasterStudies masterStudies) {
+    public boolean create(DoctoralThesis doctoralThesis) {
         try {
             List<String> list = Files.readAllLines(file.toPath());
-            list.add(masterToCsv(masterStudies));
+            list.add(doctoralToCsv(doctoralThesis));
             Files.write(file.toPath(), list);
             return true;
         } catch (IOException e) {
@@ -73,14 +72,14 @@ public class MasterCsvDAO implements persistance.MasterDAO {
      * @return Lista con los objetos de todos los elementos leídos
      */
     @Override
-    public LinkedList<MasterStudies> readAll() {
+    public LinkedList<DoctoralThesis> readAll() {
         try{
-            LinkedList<MasterStudies> masters = new LinkedList<>();
+            LinkedList<DoctoralThesis> doctorals = new LinkedList<>();
             List<String> list = Files.readAllLines(file.toPath());
             for (String line: list) {
-                masters.add(masterFromCsv(line));
+                doctorals.add(doctoralFromCsv(line));
             }
-            return masters;
+            return doctorals;
         } catch (IOException e) {
             return null;
         }
@@ -89,13 +88,13 @@ public class MasterCsvDAO implements persistance.MasterDAO {
     /**
      * Obtiene el objeto a través de la posición en la que está escrito en el fichero
      * @param index posición en el fichero
-     * @return objeto del Master solicitado
+     * @return objeto del Doctoral solicitado
      */
     @Override
-    public MasterStudies findByIndex(int index) {
+    public DoctoralThesis findByIndex(int index) {
         try {
             List<String> list = Files.readAllLines(file.toPath());
-            return masterFromCsv(list.get(index-1));
+            return doctoralFromCsv(list.get(index-1));
         } catch (IOException e) {
             return null;
         }
@@ -109,9 +108,9 @@ public class MasterCsvDAO implements persistance.MasterDAO {
     @Override
     public boolean delete(int index) {
         try {
-            List<String> budgets = Files.readAllLines(file.toPath());
-            budgets.remove(index);
-            Files.write(file.toPath(), budgets);
+            List<String> doctorals = Files.readAllLines(file.toPath());
+            doctorals.remove(index);
+            Files.write(file.toPath(), doctorals);
             return true;
         } catch (IOException e) {
             return false;
@@ -121,21 +120,20 @@ public class MasterCsvDAO implements persistance.MasterDAO {
     /**
      * Actualiza una línea del fichero
      * @param index Posición de la línea a modificar
-     * @param masterStudies Nuevo objeto que quiere escribirse en la línea
+     * @param doctoral Nuevo objeto que quiere escribirse en la línea
      * @return booleano que indica si se ha modificado correctamente
      */
     @Override
-    public boolean changeLine (int index, MasterStudies masterStudies) {
+    public boolean changeLine (int index, DoctoralThesis doctoral) {
         try {
-            List<String> masters = Files.readAllLines(file.toPath());
-            masters.remove(index);
-            masters.add(index, masterToCsv(masterStudies));
-            Files.write(file.toPath(), masters);
+            List<String> doctorals = Files.readAllLines(file.toPath());
+            doctorals.remove(index);
+            doctorals.add(index, doctoralToCsv(doctoral));
+            Files.write(file.toPath(), doctorals);
             return true;
         }catch (IOException e) {
             return false;
         }
     }
-
 
 }

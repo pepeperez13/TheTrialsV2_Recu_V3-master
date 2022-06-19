@@ -24,8 +24,8 @@ import java.util.List;
  * @author Abraham Cedeño
  */
 public class TeamJsonDAO implements TeamDAO {
-    private final String filename = "teams.json";
-    private static final String route = "files/teams.json";
+    private final String filename = "team.json";
+    private static final String route = "files/team.json";
     private static final Path path = Path.of(route);
     private File file = new File("files", filename);
 
@@ -76,7 +76,6 @@ public class TeamJsonDAO implements TeamDAO {
     @Override
     public LinkedList<Player> readAll () {
         try{
-            Gson gson = new Gson();
             String lines = Files.readString(path);
             JsonElement element = JsonParser.parseString(lines);
             JsonArray array = element.getAsJsonArray();

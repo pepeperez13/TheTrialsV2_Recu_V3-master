@@ -1,4 +1,4 @@
-package persistance.CSV;
+package Basura;
 
 import business.trialsTypes.PaperPublication;
 import persistance.PaperDAO;

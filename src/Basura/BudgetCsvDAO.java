@@ -1,6 +1,6 @@
-package persistance.CSV;
+package Basura;
 
-import business.trialsTypes.DoctoralThesis;
+import business.trialsTypes.Budget;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -8,20 +8,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Clase que gestiona la lectura y escritura del fichero CSV de los doctorals
+ * Clase que gestiona la lectura y escritura del fichero CSV de los budget
  * @author José Perez
  * @author Abraham Cedeño
  */
-public class DoctoralCsvDAO implements persistance.DoctoralDAO {
+public class BudgetCsvDAO implements persistance.BudgetDAO {
     private static final String separator = ",";
-    private final String fileName = "doctorals.csv";
+    private final String fileName = "budgets.csv";
     private final String filePath = "files";
     private File file = new File(filePath, fileName);
 
     /**
      * Método constructor que crea un fichero CSV nuevo, en caso de no existir
      */
-    public DoctoralCsvDAO () {
+    public BudgetCsvDAO () {
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -32,34 +32,34 @@ public class DoctoralCsvDAO implements persistance.DoctoralDAO {
     }
 
     /**
-     * Convierte un objeto de tipo DoctoralThesis a un String de CSV
-     * @param doctoralThesis objeto a convertir a string
+     * Convierte un objeto de tipo Budget a un String de CSV
+     * @param budget objeto a convertir a string
      * @return string del objeto
      */
-    private String doctoralToCsv(DoctoralThesis doctoralThesis) {
-        return doctoralThesis.getName() + separator + doctoralThesis.getFieldOfStudy() + separator + doctoralThesis.getDifficulty() + separator + doctoralThesis.isInUse();
+    private String budgetToCsv(Budget budget) {
+        return budget.getNameTrial() + separator + budget.getNameEntity() + separator + budget.getAmount() + separator + budget.isInUse();
     }
 
     /**
-     * Método que crea un objeto de DoctoralThesis a partir de una línea de CSV
+     * Método que crea un objeto de Budget a partir de una línea de CSV
      * @param csv Línea que queremos convertir
-     * @return Doctoral pedido
+     * @return Budget pedido
      */
-    private DoctoralThesis doctoralFromCsv (String csv) {
+    private Budget budgetFromCsv (String csv) {
         String[] parts = csv.split(separator);
-        return new DoctoralThesis(parts[0], parts[1], Integer.parseInt(parts[2]), Boolean.valueOf(parts[3]));
+        return new Budget(parts[0], parts[1], Integer.parseInt(parts[2]), Boolean.valueOf(parts[3]));
     }
 
     /**
-     * Crea un nuevo DoctoralThesis y lo escribe en el fichero
-     * @param doctoralThesis doctoral que se desea escribir
+     * Crea un nuevo budget y lo escribe en el fichero
+     * @param budget budget que se desea escribir
      * @return booleano que indica si se ha escrito correctamente
      */
     @Override
-    public boolean create(DoctoralThesis doctoralThesis) {
+    public boolean create(Budget budget) {
         try {
             List<String> list = Files.readAllLines(file.toPath());
-            list.add(doctoralToCsv(doctoralThesis));
+            list.add(budgetToCsv(budget));
             Files.write(file.toPath(), list);
             return true;
         } catch (IOException e) {
@@ -72,14 +72,14 @@ public class DoctoralCsvDAO implements persistance.DoctoralDAO {
      * @return Lista con los objetos de todos los elementos leídos
      */
     @Override
-    public LinkedList<DoctoralThesis> readAll() {
+    public LinkedList<Budget> readAll() {
         try{
-            LinkedList<DoctoralThesis> doctorals = new LinkedList<>();
+            LinkedList<Budget> budgets = new LinkedList<>();
             List<String> list = Files.readAllLines(file.toPath());
             for (String line: list) {
-                doctorals.add(doctoralFromCsv(line));
+                budgets.add(budgetFromCsv(line));
             }
-            return doctorals;
+            return budgets;
         } catch (IOException e) {
             return null;
         }
@@ -88,13 +88,13 @@ public class DoctoralCsvDAO implements persistance.DoctoralDAO {
     /**
      * Obtiene el objeto a través de la posición en la que está escrito en el fichero
      * @param index posición en el fichero
-     * @return objeto del Doctoral solicitado
+     * @return objeto del budget solicitado
      */
     @Override
-    public DoctoralThesis findByIndex(int index) {
+    public Budget findByIndex(int index) {
         try {
             List<String> list = Files.readAllLines(file.toPath());
-            return doctoralFromCsv(list.get(index-1));
+            return budgetFromCsv(list.get(index-1));
         } catch (IOException e) {
             return null;
         }
@@ -108,9 +108,9 @@ public class DoctoralCsvDAO implements persistance.DoctoralDAO {
     @Override
     public boolean delete(int index) {
         try {
-            List<String> doctorals = Files.readAllLines(file.toPath());
-            doctorals.remove(index);
-            Files.write(file.toPath(), doctorals);
+            List<String> budgets = Files.readAllLines(file.toPath());
+            budgets.remove(index);
+            Files.write(file.toPath(), budgets);
             return true;
         } catch (IOException e) {
             return false;
@@ -120,16 +120,16 @@ public class DoctoralCsvDAO implements persistance.DoctoralDAO {
     /**
      * Actualiza una línea del fichero
      * @param index Posición de la línea a modificar
-     * @param doctoral Nuevo objeto que quiere escribirse en la línea
+     * @param budget Nuevo objeto que quiere escribirse en la línea
      * @return booleano que indica si se ha modificado correctamente
      */
     @Override
-    public boolean changeLine (int index, DoctoralThesis doctoral) {
+    public boolean changeLine (int index, Budget budget) {
         try {
-            List<String> doctorals = Files.readAllLines(file.toPath());
-            doctorals.remove(index);
-            doctorals.add(index, doctoralToCsv(doctoral));
-            Files.write(file.toPath(), doctorals);
+            List<String> budgets = Files.readAllLines(file.toPath());
+            budgets.remove(index);
+            budgets.add(index, budgetToCsv(budget));
+            Files.write(file.toPath(), budgets);
             return true;
         }catch (IOException e) {
             return false;
@@ -137,3 +137,4 @@ public class DoctoralCsvDAO implements persistance.DoctoralDAO {
     }
 
 }
+

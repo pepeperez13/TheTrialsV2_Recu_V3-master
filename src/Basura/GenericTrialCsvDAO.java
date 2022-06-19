@@ -1,4 +1,4 @@
-package persistance.CSV;
+package Basura;
 
 import business.TrialTypeOptions;
 import business.trialsTypes.GenericTrial;

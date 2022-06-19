@@ -2,8 +2,6 @@ package Basura;
 
 import business.DataSourceOptions;
 import business.trialsTypes.PaperPublication;
-import persistance.CSV.PaperCsvDAO;
-import persistance.JSON.PaperJsonDAO;
 import persistance.PaperDAO;
 
 import java.util.LinkedList;
