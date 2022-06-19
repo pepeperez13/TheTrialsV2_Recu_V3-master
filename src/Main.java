@@ -1,7 +1,7 @@
 import business.DataSourceOptions;
 import business.EditionManager;
-import business.ManagersTrials.*;
 import business.TeamManager;
+import business.TrialsManager;
 import presentation.*;
 
 public class Main {

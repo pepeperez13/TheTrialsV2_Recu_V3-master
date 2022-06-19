@@ -2,27 +2,27 @@
   {
     "magazineName": "Journal",
     "quartile": "Q2",
-    "acceptedProbability": 70,
+    "acceptedProbability": 60,
     "revisedProbability": 20,
-    "rejectedProbability": 10,
+    "rejectedProbability": 20,
     "name": "Papersito",
     "type": "PAPER",
     "inUse": true
   },
   {
-    "nom": "Mejor",
-    "numberCredits": 90,
-    "probability": 88,
+    "nom": "crack",
+    "numberCredits": 89,
+    "probability": 75,
     "name": "Mastersito",
     "type": "MASTER",
     "inUse": true
   },
   {
     "fieldOfStudy": "Science",
-    "difficulty": 7,
-    "name": "Doctoralsito",
+    "difficulty": 6,
+    "name": "Doctoralisot",
     "type": "DOCTORAL",
-    "inUse": false
+    "inUse": true
   },
   {
     "nameEntity": "Entidad",

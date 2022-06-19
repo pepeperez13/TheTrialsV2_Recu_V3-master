@@ -130,7 +130,7 @@ public class TrialsJsonDAO implements TrialsDAO {
                     trial = new DoctoralThesis(object.getAsJsonPrimitive("name").getAsString(),
                             object.getAsJsonPrimitive("fieldOfStudy").getAsString(),
                             object.getAsJsonPrimitive("difficulty").getAsInt(),
-                            object.getAsJsonPrimitive("name").getAsBoolean());
+                            object.getAsJsonPrimitive("inUse").getAsBoolean());
                 } else {
                     trial = new Budget(object.getAsJsonPrimitive("name").getAsString(),
                             object.getAsJsonPrimitive("nameEntity").getAsString(),

@@ -2,7 +2,7 @@ package presentation;
 
 import business.Edition;
 import business.EditionManager;
-import business.ManagersTrials.TrialsManager;
+import business.TrialsManager;
 import business.TeamManager;
 import business.playerTypes.Engineer;
 import business.playerTypes.Player;

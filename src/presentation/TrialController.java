@@ -1,8 +1,7 @@
 package presentation;
 
-import business.ManagersTrials.TrialsManager;
+import business.TrialsManager;
 import business.trialsTypes.*;
-import presentation.ViewController;
 
 public class TrialController {
     private final ViewController view;

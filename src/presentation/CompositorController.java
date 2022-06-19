@@ -2,7 +2,7 @@ package presentation;
 
 import business.Edition;
 import business.EditionManager;
-import business.ManagersTrials.*;
+import business.TrialsManager;
 import business.trialsTypes.GenericTrial;
 
 import java.util.ArrayList;
@@ -283,15 +283,19 @@ public class CompositorController {
             int numEdition = askForInput("\nWhich edition do you want to clone?", 2);
             if (numEdition > 0 && numEdition <= editionManager.getEditions().size()) {
                 int year = view.askForInteger("\nEnter the new edition's year: ");
-                int numPlayers;
-                do {
-                    numPlayers = view.askForInteger("Enter the new edition's initial number of players: ");
-                    if (numPlayers < 0 || numPlayers > 5) {
-                        System.out.println("\nIncorrect option");
-                    }
-                } while (numPlayers < 0 || numPlayers > 5);
-                editionManager.duplicateEdition(numEdition, year, numPlayers);
-                view.showMessage("\nThe edition was cloned successfully!");
+                if (!editionManager.getEditionsNames().contains("The trials " + year)) {
+                    int numPlayers;
+                    do {
+                        numPlayers = view.askForInteger("Enter the new edition's initial number of players: ");
+                        if (numPlayers < 0 || numPlayers > 5) {
+                            System.out.println("\nIncorrect option");
+                        }
+                    } while (numPlayers < 0 || numPlayers > 5);
+                    editionManager.duplicateEdition(numEdition, year, numPlayers);
+                    view.showMessage("\nThe edition was cloned successfully!");
+                } else {
+                    view.showMessage("\nEdition for year " + year + " already exists.");
+                }
             } else {
                 if (numEdition != editionManager.getEditions().size() + 1) {
                     view.showMessage("\nThe introduced edition is not valid.");

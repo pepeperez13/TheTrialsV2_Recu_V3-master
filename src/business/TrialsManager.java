@@ -1,11 +1,9 @@
-package business.ManagersTrials;
+package business;
 
-import business.DataSourceOptions;
-import business.TrialTypeOptions;
-import business.trialsTypes.*;
+import business.trialsTypes.GenericTrial;
 import persistance.*;
-import persistance.CSV.*;
-import persistance.JSON.*;
+import persistance.CSV.TrialsCsvDAO;
+import persistance.JSON.TrialsJsonDAO;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
