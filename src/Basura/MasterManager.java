@@ -2,7 +2,6 @@ package Basura;
 
 import business.DataSourceOptions;
 import business.trialsTypes.MasterStudies;
-import persistance.MasterDAO;
 
 import java.io.IOException;
 import java.util.LinkedList;

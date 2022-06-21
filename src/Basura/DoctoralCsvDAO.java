@@ -12,7 +12,7 @@ import java.util.List;
  * @author José Perez
  * @author Abraham Cedeño
  */
-public class DoctoralCsvDAO implements persistance.DoctoralDAO {
+public class DoctoralCsvDAO implements DoctoralDAO {
     private static final String separator = ",";
     private final String fileName = "doctorals.csv";
     private final String filePath = "files";

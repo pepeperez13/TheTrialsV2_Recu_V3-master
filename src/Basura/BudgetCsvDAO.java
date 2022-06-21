@@ -12,7 +12,7 @@ import java.util.List;
  * @author José Perez
  * @author Abraham Cedeño
  */
-public class BudgetCsvDAO implements persistance.BudgetDAO {
+public class BudgetCsvDAO implements BudgetDAO {
     private static final String separator = ",";
     private final String fileName = "budgets.csv";
     private final String filePath = "files";

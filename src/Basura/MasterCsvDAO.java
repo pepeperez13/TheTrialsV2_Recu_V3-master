@@ -12,7 +12,7 @@ import java.util.List;
  * @author José Perez
  * @author Abraham Cedeño
  */
-public class MasterCsvDAO implements persistance.MasterDAO {
+public class MasterCsvDAO implements MasterDAO {
     private static final String separator = ",";
     private final String fileName = "masters.csv";
     private final String filePath = "files";

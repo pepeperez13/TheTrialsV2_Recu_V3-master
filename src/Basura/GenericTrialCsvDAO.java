@@ -2,7 +2,6 @@ package Basura;
 
 import business.TrialTypeOptions;
 import business.trialsTypes.GenericTrial;
-import persistance.GenericTrialDAO;
 
 import java.io.File;
 import java.io.IOException;

@@ -2,7 +2,6 @@ package Basura;
 
 import business.DataSourceOptions;
 import business.trialsTypes.DoctoralThesis;
-import persistance.DoctoralDAO;
 
 import java.io.IOException;
 import java.util.LinkedList;

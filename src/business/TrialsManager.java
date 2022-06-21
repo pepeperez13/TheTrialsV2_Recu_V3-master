@@ -1,5 +1,6 @@
 package business;
 
+import Basura.*;
 import business.trialsTypes.GenericTrial;
 import persistance.*;
 import persistance.CSV.TrialsCsvDAO;
@@ -9,11 +10,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class TrialsManager {
+    /*
     private GenericTrialDAO genericTrialDAO;
     private PaperDAO paperDAO;
     private MasterDAO masterDAO;
     private DoctoralDAO doctoralDAO;
     private BudgetDAO budgetDAO;
+     */
     // Tocara cambiar esto de json a interficie, cuando se añada el implements
     private TrialsDAO trialsDAO;
 
@@ -174,17 +177,6 @@ public class TrialsManager {
         return 0;
     }
 
-    // Devuelve todos los nombres de un tipo de prueba especifica
-    public LinkedList<String> getTrialsNamesByType (TrialTypeOptions type){
-        LinkedList<GenericTrial> trials =  genericTrialDAO.readAll();
-        LinkedList<String> nombres = new LinkedList<>();
-        for (GenericTrial trial : trials) {
-            if (trial.getType().equals(type)) {
-                nombres.add(trial.getName());
-            }
-        }
-        return nombres;
-    }
 
     /**
      * Método que obtiene los nombres de todas las pruebas existentes
@@ -236,16 +228,6 @@ public class TrialsManager {
             stringNames[i] = names.get(i);
         }
         return stringNames;
-    }
-
-    /**
-     * Metodo que permite saber el tipo de una prueba segun su posicion en una lista
-     * @param index indice de la prueba que se quiere saber el tipo
-     * @return tipo de la prueba buscada
-     */
-    public TrialTypeOptions getTrialTypeByIndex (int index) {
-        GenericTrial trial = genericTrialDAO.readAll().get(index-1);
-        return getTrialType(trial);
     }
 
     /**
@@ -307,14 +289,6 @@ public class TrialsManager {
             }
         }
         return i - 1;
-    }
-
-    /**
-     * Elimina una prueba a través de su nombre
-     * @param name nombre de la prueba a eliminar
-     */
-    public void deleteByname (String name) {
-        genericTrialDAO.delete(getGenericIndexByName(name));
     }
 
     private TrialTypeOptions getTrialType (GenericTrial trial) {

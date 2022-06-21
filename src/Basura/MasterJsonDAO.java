@@ -5,7 +5,6 @@ import business.trialsTypes.MasterStudies;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import persistance.MasterDAO;
 
 import java.io.*;
 import java.lang.reflect.Type;

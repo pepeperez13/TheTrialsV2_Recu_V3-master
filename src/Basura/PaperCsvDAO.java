@@ -1,7 +1,6 @@
 package Basura;
 
 import business.trialsTypes.PaperPublication;
-import persistance.PaperDAO;
 
 import java.io.*;
 import java.nio.file.Files;
