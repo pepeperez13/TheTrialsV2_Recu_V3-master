@@ -40,24 +40,6 @@ public class PaperPublication extends GenericTrial{
     }
 
     /**
-     * Método constructor que crea un nuevo artículo, sin tener en cuenta si este está en uso
-     * @param name Nombre del artículo a publicar
-     * @param magazine Nombre de la revista donde se publica
-     * @param quartile Quartil de la revista
-     * @param accepted Probabilidad de que el artículo sea aceptado
-     * @param revised Probabilidad de que el artículo sea revisado
-     * @param rejected Probabilidad de que el artículo sea rechazado
-     */
-    public PaperPublication (String name, String magazine, String quartile, int accepted, int revised, int rejected) {
-        super(name, TrialTypeOptions.PAPER);
-        this.magazineName = magazine;
-        this.quartile = quartile;
-        this.acceptedProbability = accepted;
-        this.revisedProbability = revised;
-        this.rejectedProbability = rejected;
-    }
-
-    /**
      * Método que nos permite saber el nombre de un artículo
      * @return El nombre del artículo
      */

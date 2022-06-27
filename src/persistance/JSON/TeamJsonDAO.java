@@ -1,18 +1,15 @@
 package persistance.JSON;
 
-import business.PlayerTypeOptions;
-import business.TrialTypeOptions;
+
 import business.playerTypes.Doctor;
 import business.playerTypes.Engineer;
 import business.playerTypes.Master;
 import business.playerTypes.Player;
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import persistance.TeamDAO;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;

@@ -2,8 +2,6 @@ package persistance;
 
 import business.Edition;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.LinkedList;
 
 public interface EditionDAO {

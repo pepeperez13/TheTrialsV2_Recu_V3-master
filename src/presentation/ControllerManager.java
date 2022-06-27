@@ -1,10 +1,6 @@
 package presentation;
 
 
-import business.EditionManager;
-
-import java.io.IOException;
-
 /**
  * Clase que va a mostrar el mensaje inicial y posteriormente se encargará de ir ejecutando por tiempo indefinido
  * el modo compositor o el modo conductor

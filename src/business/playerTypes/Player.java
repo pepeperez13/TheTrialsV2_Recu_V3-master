@@ -2,7 +2,6 @@ package business.playerTypes;
 
 
 import business.PlayerTypeOptions;
-import business.TrialTypeOptions;
 import presentation.ViewController;
 
 /**
@@ -79,7 +78,4 @@ public class Player {
 
     }
 
-    public void setType(PlayerTypeOptions type) {
-        this.type = type;
-    }
 }

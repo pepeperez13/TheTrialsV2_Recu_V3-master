@@ -1,9 +1,5 @@
 package persistance.JSON;
 
-import business.playerTypes.Doctor;
-import business.playerTypes.Engineer;
-import business.playerTypes.Master;
-import business.playerTypes.Player;
 import business.trialsTypes.*;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;

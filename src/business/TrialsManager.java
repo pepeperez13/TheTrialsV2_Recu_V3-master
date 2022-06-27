@@ -1,6 +1,5 @@
 package business;
 
-import Basura.*;
 import business.trialsTypes.GenericTrial;
 import persistance.*;
 import persistance.CSV.TrialsCsvDAO;
@@ -10,14 +9,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class TrialsManager {
-    /*
-    private GenericTrialDAO genericTrialDAO;
-    private PaperDAO paperDAO;
-    private MasterDAO masterDAO;
-    private DoctoralDAO doctoralDAO;
-    private BudgetDAO budgetDAO;
-     */
-    // Tocara cambiar esto de json a interficie, cuando se añada el implements
     private TrialsDAO trialsDAO;
 
     /**
@@ -27,24 +18,9 @@ public class TrialsManager {
     public TrialsManager(DataSourceOptions options) {
         switch (options) {
             case JSON -> {
-                /*
-                genericTrialDAO = new GenericTrialJsonDAO();
-                paperDAO = new PaperJsonDAO();
-                masterDAO = new MasterJsonDAO();
-                doctoralDAO = new DoctoralJsonDAO();
-                budgetDAO = new BudgetJsonDAO();
-
-                 */
                 trialsDAO = new TrialsJsonDAO();
             }
             case CSV -> {
-                /*
-                genericTrialDAO = new GenericTrialCsvDAO();
-                paperDAO = new PaperCsvDAO();
-                masterDAO = new MasterCsvDAO();
-                doctoralDAO = new DoctoralCsvDAO();
-                budgetDAO = new BudgetCsvDAO();
-                 */
                 trialsDAO = new TrialsCsvDAO();
             }
         }
@@ -57,18 +33,6 @@ public class TrialsManager {
     public void addTrial (GenericTrial genericTrial) {
         trialsDAO.create(genericTrial);
 
-        /*
-        if (genericTrial instanceof PaperPublication paper) {
-            paperDAO.create(paper);
-        } else if (genericTrial instanceof MasterStudies master) {
-            masterDAO.create(master);
-        } else if (genericTrial instanceof DoctoralThesis doctoral) {
-            doctoralDAO.create(doctoral);
-        } else if (genericTrial instanceof Budget budget) {
-            budgetDAO.create(budget);
-        }
-
-         */
     }
 
     // Devuelve la prueba especifica segun su nombre
@@ -83,40 +47,6 @@ public class TrialsManager {
             }
         }
 
-        /*
-        // Buscamos la prueba en su DAO específico y la retornamos
-        switch (genericTrial.getType()) {
-            case PAPER -> {
-                for (PaperPublication paper: paperDAO.readAll()) {
-                    if (paper.getName().equals(name)) {
-                        return paper;
-                    }
-                }
-            }
-            case MASTER -> {
-                for (MasterStudies master: masterDAO.readAll()) {
-                    if (master.getName().equals(name)) {
-                        return master;
-                    }
-                }
-            }
-            case DOCTORAL -> {
-                for (DoctoralThesis doctoral: doctoralDAO.readAll()) {
-                    if (doctoral.getName().equals(name)) {
-                        return doctoral;
-                    }
-                }
-            }
-            case BUDGET -> {
-                for (Budget budget: budgetDAO.readAll()) {
-                    if (budget.getNameTrial().equals(name)) {
-                        return budget;
-                    }
-                }
-            }
-        }
-        return null;
-         */
         return  null;
     }
 
@@ -136,44 +66,6 @@ public class TrialsManager {
             }
         }
 
-        /*
-        // Buscamos la prueba en su DAO específico y la retornamos
-        switch (genericTrial.getType()) {
-            case PAPER -> {
-                LinkedList<PaperPublication> papers = paperDAO.readAll();
-                for (int i = 0; i < papers.size(); i++) {
-                    if (papers.get(i).getName().equals(name)) {
-                        return i;
-                    }
-                }
-            }
-            case MASTER -> {
-                LinkedList<MasterStudies> masters = masterDAO.readAll();
-                for (int i = 0; i < masters.size(); i++) {
-                    if (masters.get(i).getName().equals(name)) {
-                        return i;
-                    }
-                }
-            }
-            case DOCTORAL -> {
-                LinkedList<DoctoralThesis> dotorals = doctoralDAO.readAll();
-                for (int i = 0; i < dotorals.size(); i++) {
-                    if (dotorals.get(i).getName().equals(name)) {
-                        return i;
-                    }
-                }
-            }
-            case BUDGET -> {
-                LinkedList<Budget> budgets = budgetDAO.readAll();
-                for (int i = 0; i < budgets.size(); i++) {
-                    if (budgets.get(i).getName().equals(name)) {
-                        return i;
-                    }
-                }
-            }
-        }
-        return 0;
-         */
         return 0;
     }
 
@@ -183,7 +75,6 @@ public class TrialsManager {
      * @return Lista con los nombres de todas las pruebas
      */
     public LinkedList<String> getAllTrialsNames() {
-        //LinkedList<GenericTrial> trials =  genericTrialDAO.readAll();
         LinkedList<GenericTrial> trials = trialsDAO.readAll();
         LinkedList<String> nombres = new LinkedList<>();
         for (GenericTrial trial : trials) {
@@ -194,16 +85,6 @@ public class TrialsManager {
 
     // Elimina el trial que nos manden (hasta ahora no se usaba, pero se uede mirar de sustituir por otros deletes)
     public boolean deleteTrial (GenericTrial genericTrial) {
-        /*
-        TrialTypeOptions type = getTrialType(genericTrial);
-        switch (type) {
-            case PAPER -> paperDAO.delete(getIndexByName(genericTrial.getName()));
-            case MASTER -> masterDAO.delete(getIndexByName(genericTrial.getName()));
-            case DOCTORAL -> doctoralDAO.delete(getIndexByName(genericTrial.getName()));
-            case BUDGET -> budgetDAO.delete(getIndexByName(genericTrial.getName()));
-        }
-        return genericTrialDAO.delete(getGenericIndexByName(genericTrial.getName()));
-         */
         return trialsDAO.delete(getIndexByName(genericTrial.getName()));
     }
 
@@ -230,21 +111,6 @@ public class TrialsManager {
         return stringNames;
     }
 
-    /**
-     * Método que permite saber el tipo de una prueba segun su nombre
-     * @param name nombre de la prueba de la que queremos saber el tipo
-     * @return tipo de la prueba buscada
-     */
-    public TrialTypeOptions getTrialTypeByName (String name) {
-        GenericTrial trial = null;
-        for (GenericTrial trial1: getTrials()) {
-            if (trial1.getName().equals(name)) {
-                trial = trial1;
-                break;
-            }
-        }
-        return getTrialType(trial);
-    }
 
     /**
      * Obtiene una prueba genérica de entre todas las existentes
@@ -252,7 +118,6 @@ public class TrialsManager {
      * @return prueba que se estaba buscando
      */
     public GenericTrial getGenericalTrial (int index) {
-        //return genericTrialDAO.findByIndex(index);
         return trialsDAO.findByIndex(index);
     }
 
@@ -261,7 +126,7 @@ public class TrialsManager {
      * @return Lista con las pruebas existentes
      */
     public LinkedList<GenericTrial> getTrials () {
-        //return genericTrialDAO.readAll();
+
         return trialsDAO.readAll();
     }
 
@@ -274,56 +139,10 @@ public class TrialsManager {
         return getAllTrialsNames().contains(name);
     }
 
-    /**
-     * Nos permite saber la posición de guardado de una prueba según su nombre
-     * @param name Nombre de la prueba que queremos buscar
-     * @return Posición de la prueba solicitada
-     */
-    public int getGenericIndexByName(String name) {
-        int i;
-        boolean found = false;
-        LinkedList<GenericTrial> genericTrials = trialsDAO.readAll();
-        for (i = 0; i < genericTrials.size() && !found; i++) {
-            if (genericTrials.get(i).getName().equals(name)) {
-                found = true;
-            }
-        }
-        return i - 1;
-    }
-
-    private TrialTypeOptions getTrialType (GenericTrial trial) {
-        /*
-        if (trial instanceof PaperPublication) {
-            return TrialTypeOptions.PAPER;
-        }else if (trial instanceof MasterStudies) {
-            return TrialTypeOptions.MASTER;
-        } else if (trial instanceof DoctoralThesis) {
-            return TrialTypeOptions.DOCTORAL;
-        } else {
-            return TrialTypeOptions.BUDGET;
-        }
-         */
-        return trial.getType();
-    }
 
     public void setUsageByName (String name, boolean usage) {
         GenericTrial trial = getTrialByName(name);
         int index = getIndexByName(name);
-        /*
-        if (trial instanceof PaperPublication paper) {
-            paper.setUsage(usage);
-            paperDAO.changeLine(index, paper);
-        } else if (trial instanceof MasterStudies master) {
-            master.setUsage(usage);
-            masterDAO.changeLine(index, master);
-        } else if (trial instanceof DoctoralThesis doctoral) {
-            doctoral.setUsage(usage);
-            doctoralDAO.changeLine(index, doctoral);
-        } else if (trial instanceof Budget budget) {
-            budget.setUsage(usage);
-            budgetDAO.changeLine(index, budget);
-        }
-         */
 
         trial.setUsage(usage);
         trialsDAO.changeLine(index, trial);

@@ -111,7 +111,6 @@ public class ConductorController {
             view.showMessage("\nTrial #" + (i+1) + " - " + editionManager.getEditionCurrentYear().getTrialNameByIndex(i));
             //Pasamos un GenericTrial al gameExecutor
             gameExecutor.playTrial(trialsManager.getTrialByName(editionManager.getEditionCurrentYear().getTrialNameByIndex(i)));
-            //gameExecutor.playTrial(genericTrialManager.getGenericalTrial(genericTrialManager.getIndexByName(editionManager.getEditionCurrentYear().getTrialNameByIndex(i))+1));
             boolean dead = teamManager.checkDeadPlayers();
             if (i != numTrials - 1 && !dead) { // Si no se han ejecutado ya todos los trials, preguntamos si seguir con ejecución o no
                 do {
