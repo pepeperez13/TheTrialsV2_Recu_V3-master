@@ -25,11 +25,6 @@ public class GenericTrial {
         this.inUse = inUse;
     }
 
-    public GenericTrial (String name, TrialTypeOptions type) {
-        this.name = name;
-        this.type = type;
-    }
-
     /**
      * Método que retorna el nombre de la prueba
      * @return String con el nombre de la prueba
@@ -46,14 +41,27 @@ public class GenericTrial {
         return type;
     }
 
+    /**
+     * Método que retorna si una prueba está siendo usada por alguna edición
+     * @return true si está siendo usada, false si no está siendo usada
+     */
     public boolean getInUse () {
         return inUse;
     }
 
+    /**
+     * Método que actualiza el uso de una prueba
+     * @param use true si se usa, false si no se usa
+     */
     public void setUsage(boolean use) {
         inUse = use;
     }
 
+    /**
+     * Método que será implementado por cada tipo de prueba, que gestionará la ejecución de la misma
+     * @param teamManager manager que nos permite acceder a los datos de los jugadores
+     * @param viewController controlador de la vista
+     */
     public void playTrial (TeamManager teamManager, ViewController viewController) {
 
     }

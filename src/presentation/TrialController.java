@@ -3,6 +3,10 @@ package presentation;
 import business.TrialsManager;
 import business.trialsTypes.*;
 
+/**
+ * Clase que contiene todos los mensajes y la lógica necesaria para pedir información sobre un nuevo jugador
+ * y guardarlo en el programa. También permite mostrar la información de una prueba
+ */
 public class TrialController {
     private final ViewController view;
     private final TrialsManager trialsManager;
@@ -17,7 +21,7 @@ public class TrialController {
     }
 
     /**
-     * Método que pide los datos para añadir un nuevo budget, comprobando para cada dato si es correcto
+     * Método que llama a los metodos que permiten guardar una nueva prueba, para cada tipo
      */
     public void add (int trialType) {
 
@@ -30,6 +34,11 @@ public class TrialController {
 
     }
 
+    /**
+     * Metodo que pide al usuario todos los datos para la creación de un nuevo Paper, comprobando, para cada dato,
+     * que no contenga ningún error. Si todos los datos son correctos, se crea la nueva prueba y se guarda en el fichero
+     * de pruebas. En caso de haber error, se detiene el proceso de crear un nuevo Paper
+     */
     private void askInfoAddPaper () {
         String trialName = view.askForString("\nEnter the trial's name: ");
         if (checkErrorPaper (trialName, 1)) {
@@ -66,6 +75,11 @@ public class TrialController {
         }
     }
 
+    /**
+     * Metodo que pide al usuario todos los datos para la creación de un nuevo Master, comprobando, para cada dato,
+     * que no contenga ningún error. Si todos los datos son correctos, se crea la nueva prueba y se guarda en el fichero
+     * de pruebas. En caso de haber error, se detiene el proceso de crear un nuevo Master
+     */
     private void askInfoAddMaster () {
         String trialName = view.askForString("\nEnter the trial's name: ");
         if (checkErrorMaster(trialName, 1)) {
@@ -92,6 +106,11 @@ public class TrialController {
         }
     }
 
+    /**
+     * Metodo que pide al usuario todos los datos para la creación de un nuevo Doctoral, comprobando, para cada dato,
+     * que no contenga ningún error. Si todos los datos son correctos, se crea la nueva prueba y se guarda en el fichero
+     * de pruebas. En caso de haber error, se detiene el proceso de crear un nuevo Doctoral
+     */
     private void askInfoAddDoctoral () {
         String trialName = view.askForString("\nEnter the trial's name: ");
         if (checkErrorDoctoral(trialName, 1)) {
@@ -113,6 +132,11 @@ public class TrialController {
         }
     }
 
+    /**
+     * Metodo que pide al usuario todos los datos para la creación de un nuevo Budget, comprobando, para cada dato,
+     * que no contenga ningún error. Si todos los datos son correctos, se crea la nueva prueba y se guarda en el fichero
+     * de pruebas. En caso de haber error, se detiene el proceso de crear un nuevo Budget
+     */
     private void askInfoAddBudget () {
         String trialName = view.askForString("\nEnter the trial's name: ");
         if (checkErrorBudget(trialName, 1)) {
@@ -135,8 +159,8 @@ public class TrialController {
     }
 
     /**
-     * Muestra la información detallada de un Paper en concreto
-     * @param numTrial Indice de la prueba concreta sobre la que se quiera obtener información
+     * Muestra la información detallada de cualquier tipo de prueba, a partir de su posicion en el fichero
+     * @param numTrial Indice de la prueba concreta sobre la que se quiera mostrar información
      */
     public void showTrial (int numTrial)  {
         GenericTrial trial = trialsManager.getTrialByIndex(numTrial);
@@ -164,7 +188,7 @@ public class TrialController {
     }
 
     /**
-     * Comprueba, para cada tipo de dato, si hay algún error
+     * Comprueba, para cada tipo de dato de los Paper, si hay algún error
      * @param aux cadena que contiene la información para comprobar
      * @param mode entero que nos permite saber qué tipo de comprobación realizar
      * @return booleano que permite saber is ha habido error o no
@@ -188,6 +212,12 @@ public class TrialController {
         return true;
     }
 
+    /**
+     * Comprueba, para cada tipo de dato de los Master, si hay algún error
+     * @param aux cadena que contiene la información para comprobar
+     * @param mode entero que nos permite saber qué tipo de comprobación realizar
+     * @return booleano que permite saber is ha habido error o no
+     */
     private boolean checkErrorMaster (String aux, int mode) {
         switch (mode) {
             case 1: // Comprobamos que el nombre no este vacío y que no exista
@@ -207,6 +237,12 @@ public class TrialController {
         return true;
     }
 
+    /**
+     * Comprueba, para cada tipo de dato de los Doctoral, si hay algún error
+     * @param aux cadena que contiene la información para comprobar
+     * @param mode entero que nos permite saber qué tipo de comprobación realizar
+     * @return booleano que permite saber is ha habido error o no
+     */
     private boolean checkErrorDoctoral (String aux, int mode) {
         switch (mode) {
             case 1: // Comprobamos que el nombre no este vacío y que no exista
@@ -224,6 +260,12 @@ public class TrialController {
         return true;
     }
 
+    /**
+     * Comprueba, para cada tipo de dato de los Budget, si hay algún error
+     * @param aux cadena que contiene la información para comprobar
+     * @param mode entero que nos permite saber qué tipo de comprobación realizar
+     * @return booleano que permite saber is ha habido error o no
+     */
     private boolean checkErrorBudget (String aux, int mode) {
         switch (mode) {
             case 1: // Comprobamos que el nombre no este vacío y que no exista

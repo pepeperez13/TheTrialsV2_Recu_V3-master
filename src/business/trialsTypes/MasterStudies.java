@@ -18,7 +18,6 @@ public class MasterStudies extends GenericTrial{
     private int numberCredits;
     private int probability;
 
-
     /**
      * Método constructor que crea un nuevo artículo, teniendo en cuenta si está en uso
      * @param name Nombre de la prueba
@@ -74,10 +73,19 @@ public class MasterStudies extends GenericTrial{
         return probability;
     }
 
+    /**
+     * Método que actualiza el uso de una prueba
+     * @param use true si está en uso, false en desuso
+     */
     public void setUsage(boolean use) {
         super.setUsage(use);
     }
 
+    /**
+     * Método que ejecuta, para un equipo entero, un Master Studies y actualiza los datos de los jugadores
+     * @param teamManager manager que nos permite acceder a los datos de los jugadores
+     * @param viewController controlador de la vista
+     */
     @Override
     public void playTrial(TeamManager teamManager, ViewController viewController) {
         int i = 0;
@@ -92,7 +100,7 @@ public class MasterStudies extends GenericTrial{
     }
 
     /**
-     * Calcula si un jugador pasa el master o no
+     * Calcula si un jugador pasa el master o no y cambia su PI según el resultado
      * @param masterStudies prueba a ejecutar
      * @param player jugador que está en la prueba
      */
@@ -112,8 +120,9 @@ public class MasterStudies extends GenericTrial{
             }
         }
 
-        // Modificamos PI según el resultado
+        // Modificamos PI según el resultado y mostramos por pantalla
         if (pass > deny) {
+            // Si el jugador es un Engineer, directamente se sube su PI a 10
             if (player instanceof Engineer) {
                 player.setPi(10);
             }else{

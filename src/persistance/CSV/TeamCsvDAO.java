@@ -39,7 +39,7 @@ public class TeamCsvDAO implements TeamDAO {
     /**
      * Transforma un objeto de jugador a una línea de CSV
      * @param player jugador que se quiere transformar
-     * @return String Cadena de caracteres a guardar
+     * @return String de caracteres con la info del jugador
      */
     private String playerToCsv (Player player) {
         // Según que instancia de Player sea, se escribe de una forma determinada

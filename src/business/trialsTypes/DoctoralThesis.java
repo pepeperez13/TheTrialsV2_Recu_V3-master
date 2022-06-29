@@ -60,12 +60,21 @@ public class DoctoralThesis extends GenericTrial{
         return difficulty;
     }
 
+    /**
+     * Método que actualiza el uso de una prueba
+     * @param use true si está en uso, false en desuso
+     */
     public void setUsage(boolean use) {
         super.setUsage(use);
     }
 
+    /**
+     * Método que ejecuta, para un equipo entero, un Doctoral Thesis y actualiza los datos de los jugadores
+     * @param teamManager manager que nos permite acceder a los datos de los jugadores
+     * @param view controlador de la vista
+     */
     @Override
-    public void playTrial(TeamManager teamManager, ViewController view) {
+    public void playTrial (TeamManager teamManager, ViewController view) {
         double result = 0;
         int j = 0;
 
@@ -76,8 +85,9 @@ public class DoctoralThesis extends GenericTrial{
                 for (int i = 1; i <= getDifficulty(); i++) {
                     result = result + ((2 * i) - 1);
                 }
-                // Comprobamos si pasa y actualizamos PI, mostrandolo
+                // Comprobamos si pasa y actualizamos PI, mostrandolo por pantalla
                 if (player.getPI() > result) {
+                    // Si el jugador es un Doctor, automáticamente su PI pasa a 10
                     if (player instanceof Doctor) {
                         player.setPi(10);
                     } else {

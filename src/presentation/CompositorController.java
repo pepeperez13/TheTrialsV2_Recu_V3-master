@@ -90,8 +90,7 @@ public class CompositorController {
     }
 
     /**
-     * Método privado que pide los datos de una nueva prueba a registrar, revisando la validez de los datos antes
-     * de cada petición. Si los datos son inválidos, se para la ejecución
+     * Método privado que llama al método que pide los datos de una nueva prueba a registrar, que se encuentra en el "TrialController"
      */
     private void addTrial () {
         view.showTypesTrials();
@@ -101,7 +100,7 @@ public class CompositorController {
 
 
     /**
-     * Se encarga de listar los métodos actualmente guardados, si es que los hay
+     * Se encarga de listar las pruebas actualmente guardadas, si es que las hay
      */
     private void listTrials () {
         if (!trialsManager.getTrials().isEmpty()) {
@@ -380,7 +379,7 @@ public class CompositorController {
 
     /**
      * Se encarga de indicar cual es el año actual
-     * @return Nos permitirá saber si se ha encontrado una edición para este año o no
+     * @return Nos permitirá saber cuál es el ano actual, para saber si existe una edición en dicho ano
      */
     private int getCurrentYear () {
         Calendar calendar = new GregorianCalendar();

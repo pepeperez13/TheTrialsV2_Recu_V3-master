@@ -5,11 +5,10 @@ import presentation.ViewController;
 
 /**
  * Define un tipo de jugador Doctor, que hereda del genérico Player
- * @author Abraham Cedeño
+ * @author Abraham Cedeno
  * @author José Pérez
  */
 public class Doctor extends Player{
-
 
     /**
      * Constructor que crea un nuevo Doctor
@@ -58,8 +57,12 @@ public class Doctor extends Player{
     }
 
 
+    /**
+     * Mustra el PI de un Doctor
+     * @param view controlador de la vista
+     */
     @Override
-    public void showInfo(ViewController view) {
+    public void showInfo (ViewController view) {
         view.showMessage(getName()+", PhD. PI count: " + getPI());
     }
 

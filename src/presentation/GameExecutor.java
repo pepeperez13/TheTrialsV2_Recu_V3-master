@@ -8,7 +8,6 @@ import business.playerTypes.Player;
 import business.trialsTypes.*;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * Clase que se encarga de ejecutar la lógica de ejecución de cada una de las diferentes tipos de pruebas
@@ -28,12 +27,11 @@ public class GameExecutor {
     }
 
     /**
-     * Escoge qué lógica ejecutar según el tipo de prueba que se indique
+     * Llama al método de jugar prueba, que se encuentra dentro de cada prueba especifica. Posteriormente
+     * muestra si han habido cambios en los tipos de jugadores
      * @param genericTrial prueba a ejecutar
      */
     public void playTrial (GenericTrial genericTrial)  {
-        // El equipo entero se enfrenta a la prueba, mostrandose el
-        // desempeño de cada jugador. Actualizandose los PI de los jugadores
         genericTrial.playTrial(teamManager,view);
 
         // Se muestran las evoluciones
@@ -46,14 +44,14 @@ public class GameExecutor {
 
     /**
      * Método que revisa los PI de todos los jugadores de un equipo y cambia su estado (evoluciona) si es necesario.
-     * Lo usan todos los tipos de pruebas
-     * @return lista con los nombres de los jugadores que hayan evolucionado
+     * @return lista con los mensajes de todos los jugadores que hayan evolucionado
      */
     private LinkedList<String> checkUpdateStatus () {
         int i = 0;
         LinkedList<String> changedType = new LinkedList<>();
         // Para cada jugador, comprobamos si debe evolucionar de tipo
         for (Player player : teamManager.getPlayers()) {
+            // Debemos distinguir que tipo de jugador es para poder escribir el mensaje correcto
             if (player instanceof Engineer) {
                 // Si debe evolucionar (tiene 10 PI, lo evolucionamos)
                 if (player.checkUpdateStatus()) {

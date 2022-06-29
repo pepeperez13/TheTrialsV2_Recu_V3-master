@@ -73,6 +73,10 @@ public class Engineer extends Player{
         return super.checkUpdateStatus();
     }
 
+    /**
+     * Mustra el PI de un Engineer
+     * @param view controlador de la vista
+     */
     @Override
     public void showInfo (ViewController view) {
         view.showMessage(getName()+", Engineer. PI count: " + getPI());

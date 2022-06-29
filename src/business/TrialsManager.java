@@ -17,12 +17,8 @@ public class TrialsManager {
      */
     public TrialsManager(DataSourceOptions options) {
         switch (options) {
-            case JSON -> {
-                trialsDAO = new TrialsJsonDAO();
-            }
-            case CSV -> {
-                trialsDAO = new TrialsCsvDAO();
-            }
+            case JSON -> trialsDAO = new TrialsJsonDAO();
+            case CSV -> trialsDAO = new TrialsCsvDAO();
         }
     }
 
@@ -35,7 +31,11 @@ public class TrialsManager {
 
     }
 
-    // Devuelve la prueba especifica segun su nombre
+    /**
+     * Método que permite obtener un objeto de una prueba segun su nombre
+     * @param name nombre de la prueba que se busca
+     * @return Objeto de la prueba
+     */
     public GenericTrial getTrialByName (String name) {
         LinkedList<GenericTrial> trials = getTrials();
         GenericTrial genericTrial = null;
@@ -50,12 +50,22 @@ public class TrialsManager {
         return  null;
     }
 
+    /**
+     * Método que permite obtener una prueba según su indice (posicion en el fichero)
+     * @param index posicion de la prueba en el fichero
+     * @return objeto de la prueba buscada
+     */
     public GenericTrial getTrialByIndex (int index) {
         return getTrialByName(trialsDAO.findByIndex(index).getName());
     }
 
-   // Devuelve la posicion de la prueba en su dao especifico segun su nombre
-    public int getIndexByName (String name) {
+
+    /**
+     * Metodo que permite saber la posición de una prueba en el fichero a partir de su nombre
+     * @param name nombre de la prueba
+     * @return posicion de la prueba en el fichero
+     */
+    private int getIndexByName (String name) {
         LinkedList<GenericTrial> trials = getTrials();
         GenericTrial genericTrial = null;
 
@@ -83,11 +93,19 @@ public class TrialsManager {
         return nombres;
     }
 
-    // Elimina el trial que nos manden (hasta ahora no se usaba, pero se uede mirar de sustituir por otros deletes)
-    public boolean deleteTrial (GenericTrial genericTrial) {
-        return trialsDAO.delete(getIndexByName(genericTrial.getName()));
+    /**
+     * Elimina una prueba especifica de los ficheros
+     * @param genericTrial prueba que queremos eliminar
+     */
+    public void deleteTrial (GenericTrial genericTrial) {
+        trialsDAO.delete(getIndexByName(genericTrial.getName()));
     }
 
+    /**
+     * Permite saber se una prueba está en uso por alguna edición
+     * @param genericTrial prueba cuyo uso se quiere conocer
+     * @return true si está en uso, false si no está en uso
+     */
     public boolean isInUse (GenericTrial genericTrial) {
         return genericTrial.getInUse();
     }
@@ -140,6 +158,11 @@ public class TrialsManager {
     }
 
 
+    /**
+     * Método que pemite poner en uso/no uso de una prueba según su nombre
+     * @param name nombre de la prueba cuyo uso se quiere modificar
+     * @param usage indica si se quiere poner en uso o en desuso
+     */
     public void setUsageByName (String name, boolean usage) {
         GenericTrial trial = getTrialByName(name);
         int index = getIndexByName(name);

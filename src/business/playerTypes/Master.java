@@ -71,6 +71,10 @@ public class Master extends Player {
     }
 
 
+    /**
+     * Mustra el PI de un Master
+     * @param view controlador de la vista
+     */
     @Override
     public void showInfo(ViewController view) {
         view.showMessage(getName()+", Master. PI count: " + getPI());

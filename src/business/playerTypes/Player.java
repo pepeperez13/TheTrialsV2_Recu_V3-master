@@ -74,8 +74,12 @@ public class Player {
         }
     }
 
+    /**
+     * Método que será implementado por cada jugador especifico
+     * @param view controlador de la vista
+     */
     public void showInfo (ViewController view) {
-
+        // Nada
     }
 
 }

@@ -99,7 +99,7 @@ public class TeamJsonDAO implements TeamDAO {
     }
 
     /**
-     * Elimina un dato en una posición del fichero
+     * Elimina un jugador para una posición en el fichero
      * @param index posición del dato a eliminar
      * @return booleano que indica si se ha eliminado correctamente
      */
@@ -119,7 +119,7 @@ public class TeamJsonDAO implements TeamDAO {
     }
 
     /**
-     * Actualiza una posición del fichero
+     * Actualiza (cambia la información) de un elemento del fichero
      * @param index Posición del dato que se quiere modificar
      * @param player Nuevo objeto que quiere escribirse en la posicion
      * @return booleano que indica si se ha modificado correctamente
@@ -130,13 +130,7 @@ public class TeamJsonDAO implements TeamDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             List<Player> players = readAll();
             players.remove(index);
-            if (player instanceof  Engineer engineer) {
-                players.add(index, engineer);
-            } else if (player instanceof Master master) {
-                players.add(index, master);
-            } else if (player instanceof Doctor doctor) {
-                players.add(index, doctor);
-            }
+            players.add(index, player);
             String jsonData = gson.toJson(players, List.class);
             Files.write(path, jsonData.getBytes());
             return true;

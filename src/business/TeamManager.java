@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  * Controla aquello relacionado con el equipo jugando una edición
- * @author Abraham Cedeño
+ * @author Abraham Cedeno
  * @author José Pérez
  */
 public class TeamManager {
@@ -27,7 +27,7 @@ public class TeamManager {
         }
     }
 
-    /** Método que añade un nuevo participante
+    /** Método que anade un nuevo participante
      * @param player Nombre del jugador
      */
     public void addPlayer (Player player) {
@@ -59,7 +59,7 @@ public class TeamManager {
     }
 
     /**
-     * Método que eliminar a todos los jugadores
+     * Método que elimina a todos los jugadores
      */
     public void removeAllPlayers () {
         teamDAO.emptyFile();

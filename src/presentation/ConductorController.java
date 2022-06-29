@@ -39,7 +39,7 @@ public class ConductorController {
     }
 
     /**
-     * Método principal que va llamado a los diferentes método que permiten la ejecución de una edición
+     * Método principal que va llamando a los diferentes método que permiten la ejecución de una edición
      * @param finalIndex Variable que nos permitirá saber qué prueba se ha ejecutado la última (por ejemplo si el jugador
      *                   ha decidido pausar la ejecución anteriormente) y por tanto si la próxima vez que entremos
      *                   se tiene que continuar la ejecución a partir de ese punto o empezar de nuevo
@@ -76,7 +76,6 @@ public class ConductorController {
                     ControllerManager.setEndProgram();
                 } else {
                     view.showMessage("\nSaving & shutting down...");
-                    //ControllerManager.setEndProgram();
                 }
             }
         }
@@ -112,7 +111,7 @@ public class ConductorController {
             //Pasamos un GenericTrial al gameExecutor
             gameExecutor.playTrial(trialsManager.getTrialByName(editionManager.getEditionCurrentYear().getTrialNameByIndex(i)));
             boolean dead = teamManager.checkDeadPlayers();
-            if (i != numTrials - 1 && !dead) { // Si no se han ejecutado ya todos los trials, preguntamos si seguir con ejecución o no
+            if (i != numTrials - 1 && !dead) { // Si no se han ejecutado ya todos los trials y quedan jugadores, preguntamos si seguir con ejecución o no
                 do {
                     aux = view.askForString("\nContinue the execution? [yes/no]: ");
                     switch (aux) {

@@ -2,7 +2,7 @@ package business;
 
 /**
  * Clase que representa una edición
- * @author Abraham Cedeño
+ * @author Abraham Cedeno
  * @author José Pérez
  */
 public class Edition {
@@ -13,7 +13,7 @@ public class Edition {
 
     /**
      * Método constructor que crea una edición nueva
-     * @param year Año de la edición
+     * @param year Ano de la edición
      * @param numPlayers Número de jugadores que participarán en la edición
      * @param numTrials Número de pruebas que habrán en la edición
      * @param articles Nombres de todos las pruebas (artículos) que componen la edición
@@ -26,8 +26,8 @@ public class Edition {
     }
 
     /**
-     * Método que nos permite saber el año de la edición
-     * @return Año de la edición
+     * Método que nos permite saber el ano de la edición
+     * @return Ano de la edición
      */
     public int getYear() {
         return year;
@@ -43,7 +43,7 @@ public class Edition {
 
     /**
      * Método que nos permite saber el número de pruebas en la edición
-     * @return Año de la edición
+     * @return Ano de la edición
      */
     public int getNumTrials() {
         return numTrials;
@@ -57,6 +57,11 @@ public class Edition {
         return trialsNames;
     }
 
+    /**
+     * Obtiene el nombre de una prueba según su indice (posición) en la edición
+     * @param index posición de la prueba
+     * @return nombre de la prueba
+     */
     public String getTrialNameByIndex (int index) {
         return trialsNames[index];
     }

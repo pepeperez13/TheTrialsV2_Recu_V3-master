@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  * Gestiona aquello relacionado con las ediciones
- * @author Abraham Cedeño
+ * @author Abraham Cedeno
  * @author José Pérez
  */
 public class EditionManager {
@@ -29,7 +29,7 @@ public class EditionManager {
 
     /**
      * Método que permite guardar una nueva edición
-     * @param year Año de la edición
+     * @param year Ano de la edición
      * @param numPlayers Número de jugadores que participarán en la edición
      * @param numTrials Número de pruebas que habrán en la edición
      * @param nombrePruebas Nombres de todos las pruebas (artículos) que componen la ecición
@@ -58,7 +58,7 @@ public class EditionManager {
     }
 
     /**
-     * Método que permite obtener toda la información de la edición del año actual
+     * Método que permite obtener toda la información de la edición del ano actual
      * @return Información de la edición solicitada
      */
     public Edition getEditionCurrentYear ()  {
@@ -88,6 +88,11 @@ public class EditionManager {
         return editionTrialsNames;
     }
 
+    /**
+     * Método que obtiene una edición según su posicion en el fichero
+     * @param index posicion de la edicion que queremos obtener
+     * @return objeto de la edicion que se busca
+     */
     private Edition findByIndex (int index) {
         return editionDAO.readAll().get(index);
     }
@@ -104,34 +109,38 @@ public class EditionManager {
         return editionsNames;
     }
 
-
     /**
-     * Método que duplica una edición determinada, cambiando solo año y número de jugadores
+     * Método que duplica una edición determinada, cambiando solo ano y número de jugadores
+     *
      * @param index Posición de la edición que se quiere duplicar
-     * @param year Año de la nueva edición
+     * @param year Ano de la nueva edición
      * @param numPlayers Número de jugadores de la nueva edición
-     * @return Booleano que nos permite saber si la edición se ha duplicado correctamente
      */
-    public boolean duplicateEdition (int index, int year, int numPlayers) {
+    public void duplicateEdition (int index, int year, int numPlayers) {
         Edition newEdition = editionDAO.findByIndex(index); // Cargamos los datos de la edición que queremos copiar
         newEdition = new Edition(year, numPlayers, newEdition.getNumTrials(), newEdition.getTrialNames()); // Creamos nueva edición con los mismas pruebas, pero cambiando año y players
-        return editionDAO.create(newEdition);
+        editionDAO.create(newEdition);
     }
 
 
     /**
-     * Método que elimina la edición de un año concreto
-     * @param year Año de la edición a eliminar
+     * Método que elimina la edición de un ano concreto
+     * @param year Ano de la edición a eliminar
      * @return Bolleano que indica si la edición se ha podido eliminar
      */
     public boolean deleteEdition (int year) {
         return editionDAO.delete(searchByYear(year));
     }
 
-    public LinkedList<String> getAllTrialsNamesInUse () { //Nombres en uso
+    /**
+     * Método que obtiene los nombres de las pruebas que están siendo usadas por una edición
+     * @return Lista de los nombres de las pruebas que están siendo usadas
+     */
+    public LinkedList<String> getAllTrialsNamesInUse () {
         LinkedList<String> namesTrials = new LinkedList<>();
         for (int i = 0; i < getEditions().size(); i++) {
             for (int j = 0; j < getEditions().get(i).getNumTrials(); j++) {
+                // Si aún no hemos guardado la prueba en uso, la metemos en la lista (puede ser que una edición tenga varias veces la misma prueba)
                 if (!namesTrials.contains(getEditions().get(i).getTrialNameByIndex(j))) {
                     namesTrials.add(getEditions().get(i).getTrialNameByIndex(j));
                 }
@@ -140,6 +149,11 @@ public class EditionManager {
         return namesTrials;
     }
 
+    /**
+     * Permite obtener la posición en el fichero de una edición según su ano
+     * @param year Ano de la edición que estamos buscando
+     * @return posicion en el fichero de la edicion buscada
+     */
     private int searchByYear (int year) {
         int index = 0;
         for (int i = 0; i < getEditions().size(); i++) {

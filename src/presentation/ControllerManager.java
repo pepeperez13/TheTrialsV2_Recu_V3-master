@@ -2,7 +2,7 @@ package presentation;
 
 
 /**
- * Clase que va a mostrar el mensaje inicial y posteriormente se encargará de ir ejecutando por tiempo indefinido
+ * Clase que va a mostrar el mensaje inicial y posteriormente se encargará de ir ejecutando hasta que el usuario termine la ejecución
  * el modo compositor o el modo conductor
  *
  */
@@ -46,7 +46,7 @@ public class ControllerManager {
     }
 
     /**
-     * Bucle principal del programa. Ejecuta indefinidamente
+     * Bucle principal del programa. Ejecuta hasta que lo indique el usuario o termine la ejecución
      */
     private void mainLoop()  {
         viewController.showLogo();
@@ -67,8 +67,8 @@ public class ControllerManager {
     /**
      * LLama a la función principal de ejecución del Compositor
      */
-    private int executeCompositor () {
-        return compositorController.run();
+    private void executeCompositor () {
+        compositorController.run();
     }
 
     /**
@@ -81,6 +81,9 @@ public class ControllerManager {
         return conductorController.run(finalIndex);
     }
 
+    /**
+     * Actualiza una variable que permite saber al programa si debe finalizarse la ejecución
+     */
     public static void setEndProgram () {
         endProgram = true;
     }

@@ -61,11 +61,20 @@ public class Budget extends GenericTrial{
         return amount;
     }
 
+    /**
+     * Método que actualiza el uso de una prueba
+     * @param use true si está en uso, false en desuso
+     */
     public void setUsage(boolean use) {
         super.setUsage(use);
     }
 
 
+    /**
+     * Método que ejecuta, para un equipo entero, un Budget request y actualiza los datos de los jugadores
+     * @param teamManager manager que nos permite acceder a los datos de los jugadores
+     * @param view controlador de la vista
+     */
     public void playTrial (TeamManager teamManager, ViewController view) {
         boolean passed;
         // Calculamos si el equipo recibe el budget o no
@@ -77,20 +86,19 @@ public class Budget extends GenericTrial{
             passed = false;
         }
 
-        //UpdatePiTeam
+        // Segun si se ha recibido el budget o no, se cambia el PI de todos los jugadores
         if (passed) {
             Player aux;
             for (int i = 0; i < teamManager.getPlayers().size(); i++) {
-                // Cambiamos el PI para cada jugador y lo actualizamos
+                // Incrementamos el PI para cada jugador y lo actualizamos
                 aux = teamManager.getPlayers().get(i);
                 aux.incrementPI((int) Math.ceil((double) aux.getPI()/2));
                 teamManager.updatePlayer(i, aux);
             }
-        }
-        else {
+        } else {
             Player aux;
             for (int i = 0; i < teamManager.getPlayers().size(); i++) {
-                // Cambiamos el PI para cada jugador y lo actualizamos
+                // Incrementamos el PI para cada jugador y lo actualizamos
                 aux = teamManager.getPlayers().get(i);
                 aux.decrementPI(2);
                 teamManager.updatePlayer(i, aux);

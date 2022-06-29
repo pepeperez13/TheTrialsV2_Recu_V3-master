@@ -23,33 +23,6 @@ public class TrialsJsonDAO implements TrialsDAO {
     private static final Path path = Path.of(route);
     private File file = new File("files", filename);
 
-/*
-    public static void main (String[] args) {
-        GenericTrial trial1 = new PaperPublication("PruebaPaper", "M1", "Q2", 60, 20, 20, false);
-        GenericTrial trial2 = new MasterStudies("PruebaMaster", "NOM", 90, 70, false);
-        GenericTrial trial3 = new DoctoralThesis("PruebaDoctoral", "Science", 7, false);
-        GenericTrial trial4 = new Budget("PruebaBUdget", "Entidad", 400000, false);
-
-        //create(trial1);
-        //create(trial2);
-        //create(trial3);
-        //create(trial4);
-
-
-        /*
-        for (GenericTrial genericTrial: readAll()) {
-            System.out.println(genericTrial.getName());
-        }
-        */
-
-        //System.out.println(findByIndex(3).getName());
-
-        //delete(0);
-        //changeLine(4, new PaperPublication("Change", "Change", "Q1", 70, 20, 10, false));
-
-
-    //}
-
 
     /**
      * Método constructor que crea un fichero CSV nuevo, en caso de no existir
@@ -68,12 +41,12 @@ public class TrialsJsonDAO implements TrialsDAO {
 
 
     /**
-     * Crea un nuevo master y lo escribe en el fichero
-     //* @param masterStudies master que se desea escribir
+     * Recibe una nueva prueba y la escribe en el fichero
+     * @param genericTrial prueba que desea guardarse
      * @return booleano que indica si se ha escrito correctamente
      */
     @Override
-    public boolean create(GenericTrial genericTrial) {
+    public boolean create (GenericTrial genericTrial) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String lines = Files.readString(path);
@@ -135,7 +108,6 @@ public class TrialsJsonDAO implements TrialsDAO {
                 }
                 trialsList.add(trial);
             }
-
             return new LinkedList<>(trialsList);
         } catch (IOException e) {
             return new LinkedList<>();
@@ -166,7 +138,7 @@ public class TrialsJsonDAO implements TrialsDAO {
      * @return booleano que indica si se ha eliminado correctamente
      */
     @Override
-    public boolean delete(int index) {
+    public boolean delete (int index) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             List<GenericTrial> trials = readAll();
@@ -181,7 +153,7 @@ public class TrialsJsonDAO implements TrialsDAO {
     }
 
     /**
-     * Actualiza una posición del fichero
+     * Actualiza (cambia la información) de un elemento del fichero
      * @param index Posición del dato que se quiere modificar
      * @param genericTrial Nuevo objeto que quiere escribirse en la posicion
      * @return booleano que indica si se ha modificado correctamente

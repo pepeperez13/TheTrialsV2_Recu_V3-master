@@ -35,11 +35,12 @@ public class TrialsCsvDAO implements TrialsDAO {
     }
 
     /**
-     * Convierte un objeto de tipo PaperPublication a un String de CSV
+     * Convierte cualquier objeto de una prueba, a una linea de CSV, distinguiendo entre tipos de prueba
      * @param genericTrial objeto a convertir a string
      * @return string del objeto
      */
     private String trialToCsv (GenericTrial genericTrial) {
+        // Distinguimos entre los diferentes tipos de prueba y pasamos a csv
         if (genericTrial instanceof PaperPublication article) {
             return article.getArticleName() + separator + article.getMagazineName() + separator + article.getQuartile() +
                     separator + article.getAcceptedProbability() + separator + article.getRevisedProbability() +
@@ -78,7 +79,6 @@ public class TrialsCsvDAO implements TrialsDAO {
     }
 
 
-
     /**
      * Método que crea un objeto de DoctoralThesis a partir de una línea de CSV
      * @param csv Línea que queremos convertir
@@ -103,8 +103,8 @@ public class TrialsCsvDAO implements TrialsDAO {
 
 
     /**
-     * Crea un nuevo master y lo escribe en el fichero
-     * @param genericTrial master que se desea escribir
+     * Escribe una nueva prueba en el fichero
+     * @param genericTrial prueba que se desea escribir
      * @return booleano que indica si se ha escrito correctamente
      */
     @Override
@@ -128,7 +128,7 @@ public class TrialsCsvDAO implements TrialsDAO {
         try{
             LinkedList<GenericTrial> trials = new LinkedList<>();
             List<String> list = Files.readAllLines(file.toPath());
-            // Convertimos uno a uno de csv a objeto, segun el tipo
+            // Convertimos uno a uno de csv a objeto, segun el tipo y los añadimos a la lista
             for (String line: list) {
                 if (line.contains("PAPER")) {
                     trials.add(paperFromCsv(line));
@@ -149,7 +149,7 @@ public class TrialsCsvDAO implements TrialsDAO {
     /**
      * Obtiene el objeto a través de la posición en la que está escrito en el fichero
      * @param index posición en el fichero
-     * @return objeto del Master solicitado
+     * @return objeto de la prueba solicitada
      */
     @Override
     public GenericTrial findByIndex(int index) {

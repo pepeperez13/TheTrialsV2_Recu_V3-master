@@ -95,10 +95,20 @@ public class PaperPublication extends GenericTrial{
         return super.getInUse();
     }
 
+    /**
+     * Método que actualiza el uso de una prueba
+     * @param use true si está en uso, false en desuso
+     */
     public void setUsage(boolean use) {
         super.setUsage(use);
     }
 
+
+    /**
+     * Método que ejecuta, para un equipo entero, un Paper Publication y actualiza los datos de los jugadores
+     * @param teamManager manager que nos permite acceder a los datos de los jugadores
+     * @param view controlador de la vista
+     */
     @Override
     public void playTrial(TeamManager teamManager, ViewController view) {
         int i = 0;
@@ -116,7 +126,7 @@ public class PaperPublication extends GenericTrial{
     }
 
     /**
-     * Método que llama a los métodos que obtienen qué se hace con el artículo enviado y que calcula la puntuación
+     * Método que llama a los métodos que obtienen la respuesta del articulo enviado y al que calcula la puntuación
      * final del jugador
      * @param article Artículo que se está ejecutando (prueba)
      * @param player Jugador que está pasando la prueba
@@ -128,7 +138,7 @@ public class PaperPublication extends GenericTrial{
         int response;
         do {
             response = calculateResponse(article, view);
-        }while (response != 1 && response != 3);
+        } while (response != 1 && response != 3);
         // Aumentamos, mantenemos o reducimos puntuación segon el cuartil
         manageScore(response, article, player);
 
