@@ -20,40 +20,6 @@ public class TrialsCsvDAO implements TrialsDAO {
     private static final String filePath = "files";
     private static File file = new File(filePath, fileName);
 
-    /*
-    public static void main (String[] args) {
-        GenericTrial trial1 = new PaperPublication("PruebaPaper", "M1", "Q2", 60, 20, 20, false);
-        GenericTrial trial2 = new MasterStudies("PruebaMaster", "NOM", 90, 70, false);
-        GenericTrial trial3 = new DoctoralThesis("PruebaDoctoral", "Science", 7, false);
-        GenericTrial trial4 = new Budget("PruebaBUdget", "Entidad", 400000, false);
-
-        //create(trial1);
-        //create(trial2);
-        //create(trial3);
-        //create(trial4);
-
-        //System.out.println(trialToCsv(trial1));
-        //System.out.println(trialToCsv(trial2));
-        //System.out.println(trialToCsv(trial3));
-        //System.out.println(trialToCsv(trial4));
-
-        //System.out.println(readAll());
-
-
-        //System.out.println(findByIndex(1));
-        //System.out.println(findByIndex(2));
-        //System.out.println(findByIndex(3));
-        //System.out.println(findByIndex(4));
-
-        //delete(0);
-
-        //changeLine(1, trial2);
-
-        //TODOS LOS METODOS PROBADOS; FUNCIONAS TOOOOP
-
-    }
-     */
-
 
     /**
      * Método constructor que crea un fichero CSV nuevo, en caso de no existir
