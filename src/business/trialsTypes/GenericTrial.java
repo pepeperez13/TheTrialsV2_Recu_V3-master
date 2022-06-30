@@ -62,7 +62,5 @@ public abstract class GenericTrial {
      * @param teamManager manager que nos permite acceder a los datos de los jugadores
      * @param viewController controlador de la vista
      */
-    public void playTrial (TeamManager teamManager, ViewController viewController) {
-
-    }
+    public abstract void playTrial (TeamManager teamManager, ViewController viewController);
 }

@@ -75,11 +75,9 @@ public abstract class Player {
     }
 
     /**
-     * Método que será implementado por cada jugador especifico
+     * Método que será implementado por cada jugador especifico, para mostrar su info
      * @param view controlador de la vista
      */
-    public void showInfo (ViewController view) {
-        // Nada
-    }
+    public abstract void showInfo (ViewController view);
 
 }
