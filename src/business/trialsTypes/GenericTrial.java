@@ -9,7 +9,7 @@ import presentation.ViewController;
  * @author Abraham Cedeño
  * @author José Pérez
  */
-public class GenericTrial {
+public abstract class GenericTrial {
     private String name;
     private TrialTypeOptions type;
     private boolean inUse;

@@ -9,7 +9,7 @@ import presentation.ViewController;
  * @author Abraham Cedeño
  * @author José Pérez
  */
-public class Player {
+public abstract class Player {
     private String name;
     private int PI;
     // Atributo que se usa exclusivamente al escribir los jugadores en un JSON. Para los csv no hace falta ya que se añade un campo de más en el teamCsvDao, pero
