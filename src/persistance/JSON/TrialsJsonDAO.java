@@ -101,7 +101,7 @@ public class TrialsJsonDAO implements TrialsDAO {
             JsonElement element = JsonParser.parseString(lines);
             JsonArray array = element.getAsJsonArray();
             GenericTrial trial;
-            JsonObject object = (JsonObject) array.get(index);
+            JsonObject object = (JsonObject) array.get(index - 1);
             trial = fromJsonObjectToTrial(object);
             return trial;
         } catch (IOException e) {
