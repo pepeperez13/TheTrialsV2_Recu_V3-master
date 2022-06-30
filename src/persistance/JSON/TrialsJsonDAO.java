@@ -77,35 +77,10 @@ public class TrialsJsonDAO implements TrialsDAO {
             GenericTrial trial;
             List<GenericTrial> trialsList = new LinkedList<>();
 
+            // Para todos los elementos del array de json, los transformamos a objetos de Prueba
             for (int i = 0; i < array.size(); ++i) {
                 JsonObject object = (JsonObject) array.get(i);
-                JsonPrimitive type = object.getAsJsonPrimitive("type");
-                // Distinguimos entre el tipo para poder guardar en la lista que tipo concreto es
-                if (type.getAsString().equals("PAPER")) {
-                    trial = new PaperPublication(object.getAsJsonPrimitive("name").getAsString(),
-                            object.getAsJsonPrimitive("magazineName").getAsString(),
-                            object.getAsJsonPrimitive("quartile").getAsString(),
-                            object.getAsJsonPrimitive("acceptedProbability").getAsInt(),
-                            object.getAsJsonPrimitive("revisedProbability").getAsInt(),
-                            object.getAsJsonPrimitive("rejectedProbability").getAsInt(),
-                            object.getAsJsonPrimitive("inUse").getAsBoolean());
-                } else if (type.getAsString().equals("MASTER")) {
-                    trial = new MasterStudies(object.getAsJsonPrimitive("name").getAsString(),
-                            object.getAsJsonPrimitive("nom").getAsString(),
-                            object.getAsJsonPrimitive("numberCredits").getAsInt(),
-                            object.getAsJsonPrimitive("probability").getAsInt(),
-                            object.getAsJsonPrimitive("inUse").getAsBoolean());
-                } else if (type.getAsString().equals("DOCTORAL")){
-                    trial = new DoctoralThesis(object.getAsJsonPrimitive("name").getAsString(),
-                            object.getAsJsonPrimitive("fieldOfStudy").getAsString(),
-                            object.getAsJsonPrimitive("difficulty").getAsInt(),
-                            object.getAsJsonPrimitive("inUse").getAsBoolean());
-                } else {
-                    trial = new Budget(object.getAsJsonPrimitive("name").getAsString(),
-                            object.getAsJsonPrimitive("nameEntity").getAsString(),
-                            object.getAsJsonPrimitive("amount").getAsInt(),
-                            object.getAsJsonPrimitive("inUse").getAsBoolean());
-                }
+                trial = fromJsonObjectToTrial(object);
                 trialsList.add(trial);
             }
             return new LinkedList<>(trialsList);
@@ -122,11 +97,13 @@ public class TrialsJsonDAO implements TrialsDAO {
     @Override
     public GenericTrial findByIndex(int index) {
         try{
-            Gson gson = new Gson();
             String lines = Files.readString(path);
-            Type listType = new TypeToken<List<GenericTrial>>(){}.getType();
-            List<GenericTrial> trialsList = gson.fromJson(lines, listType);
-            return trialsList.get(index - 1);
+            JsonElement element = JsonParser.parseString(lines);
+            JsonArray array = element.getAsJsonArray();
+            GenericTrial trial;
+            JsonObject object = (JsonObject) array.get(index);
+            trial = fromJsonObjectToTrial(object);
+            return trial;
         } catch (IOException e) {
             return null;
         }
@@ -171,6 +148,44 @@ public class TrialsJsonDAO implements TrialsDAO {
         } catch (IOException e) {
             return false;
         }
+    }
+
+    /**
+     * Método privado que se encarga de convertir un Objeto JSON leído del fichero, a un objeto de un tipo de
+     * prueba especifica
+     * @param object objeto JSON que se desea convertir
+     * @return Objeto de una prueba de cualquier tipo
+     */
+    private GenericTrial fromJsonObjectToTrial (JsonObject object) {
+        GenericTrial trial;
+        JsonPrimitive type = object.getAsJsonPrimitive("type");
+        // Distinguimos entre el tipo para poder guardar en la lista que tipo concreto es
+        if (type.getAsString().equals("PAPER")) {
+            trial = new PaperPublication(object.getAsJsonPrimitive("name").getAsString(),
+                    object.getAsJsonPrimitive("magazineName").getAsString(),
+                    object.getAsJsonPrimitive("quartile").getAsString(),
+                    object.getAsJsonPrimitive("acceptedProbability").getAsInt(),
+                    object.getAsJsonPrimitive("revisedProbability").getAsInt(),
+                    object.getAsJsonPrimitive("rejectedProbability").getAsInt(),
+                    object.getAsJsonPrimitive("inUse").getAsBoolean());
+        } else if (type.getAsString().equals("MASTER")) {
+            trial = new MasterStudies(object.getAsJsonPrimitive("name").getAsString(),
+                    object.getAsJsonPrimitive("nom").getAsString(),
+                    object.getAsJsonPrimitive("numberCredits").getAsInt(),
+                    object.getAsJsonPrimitive("probability").getAsInt(),
+                    object.getAsJsonPrimitive("inUse").getAsBoolean());
+        } else if (type.getAsString().equals("DOCTORAL")){
+            trial = new DoctoralThesis(object.getAsJsonPrimitive("name").getAsString(),
+                    object.getAsJsonPrimitive("fieldOfStudy").getAsString(),
+                    object.getAsJsonPrimitive("difficulty").getAsInt(),
+                    object.getAsJsonPrimitive("inUse").getAsBoolean());
+        } else {
+            trial = new Budget(object.getAsJsonPrimitive("name").getAsString(),
+                    object.getAsJsonPrimitive("nameEntity").getAsString(),
+                    object.getAsJsonPrimitive("amount").getAsInt(),
+                    object.getAsJsonPrimitive("inUse").getAsBoolean());
+        }
+        return trial;
     }
 
 
