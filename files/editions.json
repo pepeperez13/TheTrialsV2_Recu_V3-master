@@ -11,7 +11,18 @@
     ]
   },
   {
-    "year": 2023,
+    "year": 2023.0,
+    "numPlayers": 4.0,
+    "numTrials": 4.0,
+    "trialsNames": [
+      "Papersito",
+      "Mastersito",
+      "Doctoralisot",
+      "Budgetsito"
+    ]
+  },
+  {
+    "year": 20233,
     "numPlayers": 4,
     "numTrials": 4,
     "trialsNames": [

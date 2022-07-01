@@ -85,6 +85,7 @@ public class DoctoralThesis extends GenericTrial{
                 for (int i = 1; i <= getDifficulty(); i++) {
                     result = result + ((2 * i) - 1);
                 }
+                result = Math.sqrt(result);
                 // Comprobamos si pasa y actualizamos PI, mostrandolo por pantalla
                 if (player.getPI() > result) {
                     // Si el jugador es un Doctor, automáticamente su PI pasa a 10
