@@ -2,18 +2,14 @@ package persistance.JSON;
 
 import business.trialsTypes.*;
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import persistance.TrialsDAO;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
-
-
 
 
 public class TrialsJsonDAO implements TrialsDAO {
