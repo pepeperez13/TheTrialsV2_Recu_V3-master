@@ -66,6 +66,10 @@ public abstract class Player {
         return name;
     }
 
+    /**
+     * Comprueba si un jugador debe evolucionar de tipo segun su PI
+     * @return booleano que indica si se debe evolucionar (true) o no (false)
+     */
     public boolean checkUpdateStatus () {
         if ( PI >= 10) {
             return true;
