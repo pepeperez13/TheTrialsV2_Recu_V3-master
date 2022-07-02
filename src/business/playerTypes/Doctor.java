@@ -29,6 +29,16 @@ public class Doctor extends Player{
         super.setPi(PI);
     }
 
+
+    /**
+     * Decrementa el PI de un Doctor
+     * @param change cantidad de puntos a retirar
+     */
+    @Override
+    public void decrementPI (int change) {
+        super.decrementPI(change);
+    }
+
     /**
      * Comprueba, según su PI, si le toca evolucionar al siguiente tipo de jugador
      * @return booleano que indica si debe evolucionar o no

@@ -92,21 +92,27 @@ public class Budget extends GenericTrial{
             for (int i = 0; i < teamManager.getPlayers().size(); i++) {
                 // Incrementamos el PI para cada jugador y lo actualizamos
                 aux = teamManager.getPlayers().get(i);
-                aux.incrementPI((int) Math.ceil((double) aux.getPI()/2));
-                teamManager.updatePlayer(i, aux);
+                if (aux.getPI() != 0) {
+                    aux.incrementPI((int) Math.ceil((double) aux.getPI() / 2));
+                    teamManager.updatePlayer(i, aux);
+                }
             }
         } else {
             Player aux;
             for (int i = 0; i < teamManager.getPlayers().size(); i++) {
                 // Incrementamos el PI para cada jugador y lo actualizamos
                 aux = teamManager.getPlayers().get(i);
-                aux.decrementPI(2);
-                teamManager.updatePlayer(i, aux);
+                if (aux.getPI() != 0) {
+                    aux.decrementPI(2);
+                    teamManager.updatePlayer(i, aux);
+                }
             }
         }
 
         for (Player player : teamManager.getPlayers()) {
-            player.showInfo(view);
+            if (player.getPI() != 0) {
+                player.showInfo(view);
+            }
         }
     }
 }

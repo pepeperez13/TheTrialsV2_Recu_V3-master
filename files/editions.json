@@ -1,35 +1,24 @@
 [
   {
-    "year": 2022.0,
-    "numPlayers": 4.0,
-    "numTrials": 4.0,
-    "trialsNames": [
-      "Papersito",
-      "Mastersito",
-      "Doctoralisot",
-      "Budgetsito"
-    ]
-  },
-  {
     "year": 2023.0,
     "numPlayers": 4.0,
     "numTrials": 4.0,
     "trialsNames": [
       "Papersito",
       "Mastersito",
-      "Doctoralisot",
-      "Budgetsito"
+      "Budgetsito",
+      "Doctoralsito"
     ]
   },
   {
-    "year": 20233,
+    "year": 2022,
     "numPlayers": 4,
     "numTrials": 4,
     "trialsNames": [
-      "Papersito",
-      "Mastersito",
-      "Doctoralisot",
-      "Budgetsito"
+      "PaperFacil",
+      "MasterFacil",
+      "DoctoralFacil",
+      "BudgetFacil"
     ]
   }
 ]

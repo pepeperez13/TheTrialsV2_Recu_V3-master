@@ -2,12 +2,12 @@
   {
     "magazineName": "Journal",
     "quartile": "Q1",
-    "acceptedProbability": 60.0,
-    "revisedProbability": 20.0,
-    "rejectedProbability": 20.0,
+    "acceptedProbability": 60,
+    "revisedProbability": 20,
+    "rejectedProbability": 20,
     "name": "Papersito",
     "type": "PAPER",
-    "inUse": false
+    "inUse": true
   },
   {
     "nom": "pelele",
@@ -15,6 +15,52 @@
     "probability": 60,
     "name": "Mastersito",
     "type": "MASTER",
-    "inUse": false
+    "inUse": true
+  },
+  {
+    "nameEntity": "Entidad",
+    "amount": 560000,
+    "name": "Budgetsito",
+    "type": "BUDGET",
+    "inUse": true
+  },
+  {
+    "fieldOfStudy": "Science",
+    "difficulty": 7,
+    "name": "Doctoralsito",
+    "type": "DOCTORAL",
+    "inUse": true
+  },
+  {
+    "magazineName": "A",
+    "quartile": "Q2",
+    "acceptedProbability": 90,
+    "revisedProbability": 5,
+    "rejectedProbability": 5,
+    "name": "PaperFacil",
+    "type": "PAPER",
+    "inUse": true
+  },
+  {
+    "nom": "Sito",
+    "numberCredits": 90,
+    "probability": 95,
+    "name": "MasterFacil",
+    "type": "MASTER",
+    "inUse": true
+  },
+  {
+    "fieldOfStudy": "Ade",
+    "difficulty": 2,
+    "name": "DoctoralFacil",
+    "type": "DOCTORAL",
+    "inUse": true
+  },
+  {
+    "nameEntity": "Lala",
+    "amount": 700000,
+    "name": "BudgetFacil",
+    "type": "BUDGET",
+    "inUse": true
   }
 ]
