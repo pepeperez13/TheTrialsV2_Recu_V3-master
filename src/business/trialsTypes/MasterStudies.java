@@ -103,6 +103,7 @@ public class MasterStudies extends GenericTrial{
      * Calcula si un jugador pasa el master o no y cambia su PI según el resultado
      * @param masterStudies prueba a ejecutar
      * @param player jugador que está en la prueba
+     * @param view controlador de la vista para poder mostrar los mensajes
      */
     private void checkPassed (MasterStudies masterStudies, Player player, ViewController view) {
         Random random = new Random();

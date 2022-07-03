@@ -130,6 +130,7 @@ public class PaperPublication extends GenericTrial{
      * final del jugador
      * @param article Artículo que se está ejecutando (prueba)
      * @param player Jugador que está pasando la prueba
+     * @param view controlador de la vista para poder mostrar los mensajes
      * @return Nuevo jugador, con la PI actualizada según su desempeño
      */
     private Player publishArticle (PaperPublication article, Player player, ViewController view) {
@@ -148,6 +149,7 @@ public class PaperPublication extends GenericTrial{
     /**
      * Método que nos dirá de forma aleatoria si el artículo se acepta, revisa o rechaza
      * @param article Artículo que se está presentando
+     * @param view controlador de la vista para poder mostrar los mensajes
      * @return Entero que puede valer: 1 (si se acepta el artículo), 2 (si se revisa el artículo), 3 (si se rechaza el artículo)
      */
     private int calculateResponse (PaperPublication article, ViewController view) {

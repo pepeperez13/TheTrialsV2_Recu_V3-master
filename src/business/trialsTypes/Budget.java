@@ -45,7 +45,7 @@ public class Budget extends GenericTrial{
 
     /**
      * Método que obtiene el nombre de la entidad
-     * @return
+     * @return nombre de la entidad
      */
     public String getNameEntity() {
         return nameEntity;

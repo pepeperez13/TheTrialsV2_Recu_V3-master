@@ -18,6 +18,7 @@ public abstract class GenericTrial {
      * Método que crea una prueba Generica
      * @param name Nombre de la prueba
      * @param type Tipo de la prueba
+     * @param inUse indica si la prueba esta en uso por alguna edicion
      */
     public GenericTrial(String name, TrialTypeOptions type, boolean inUse) {
         this.name = name;

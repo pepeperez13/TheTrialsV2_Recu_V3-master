@@ -14,6 +14,7 @@ public class TrialController {
     /**
      * Constructor que crea un nuevo PaperController
      * @param view clase vista
+     * @param trialsManager manager de pruebas
      */
     public TrialController(ViewController view, TrialsManager trialsManager) {
         this.view = view;
@@ -22,6 +23,7 @@ public class TrialController {
 
     /**
      * Método que llama a los metodos que permiten guardar una nueva prueba, para cada tipo
+     * @param trialType tipo de prueba que se va a anadir
      */
     public void add (int trialType) {
 

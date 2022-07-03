@@ -26,6 +26,7 @@ public class ConductorController {
      * @param teamManager Gestiona aquello relacionado con los jugadores (team)
      * @param view Gestiona aquello relacionado con la interacción por pantalla
      * @param gameExecutor Se encarga de gestionar la ejecución de todos los tipos de pruebas
+     * @param trialsManager Gestiona aquello relacionado con las pruebas
      */
     public ConductorController(EditionManager editionManager, TeamManager teamManager, ViewController view, GameExecutor gameExecutor, TrialsManager trialsManager) {
         this.editionManager = editionManager;

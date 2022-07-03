@@ -25,6 +25,7 @@ public class TrialsManager {
 
     /**
      * Método que permite guardar una nueva prueba del tipo genérico
+     * @param genericTrial prueba a crear
      */
     public void addTrial (GenericTrial genericTrial) {
         trialsDAO.create(genericTrial);

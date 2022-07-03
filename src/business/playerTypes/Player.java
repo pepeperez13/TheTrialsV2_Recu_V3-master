@@ -16,6 +16,12 @@ public abstract class Player {
     // no se como hacer para añadir ese mismo campo en json
     private PlayerTypeOptions type;
 
+    /**
+     * Constructor que crea un nuevo Player
+     * @param name nombre del jugador
+     * @param PI PI del jugador
+     * @param type tipo de jugador
+     */
     public Player(String name, int PI, PlayerTypeOptions type) {
         this.name = name;
         this.PI = PI;

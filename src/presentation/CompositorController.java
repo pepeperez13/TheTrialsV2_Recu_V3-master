@@ -25,6 +25,8 @@ public class CompositorController {
      * Construye un nuevo CompositorController, con todos las clases que este necesita
      * @param view ViewController que gestiona la interacción por pantall con el usuario
      * @param editionManager EditionManager que gestiona las ediciones
+     * @param trialsManager gestiona aquello relacionado con las pruebas
+     * @param trialController gestiona la creación, visualizacion etc de pruebas
      */
     public CompositorController(ViewController view, EditionManager editionManager, TrialsManager trialsManager, TrialController trialController) {
         this.view = view;

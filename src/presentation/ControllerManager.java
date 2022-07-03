@@ -28,6 +28,7 @@ public class ControllerManager {
     /**
      * Método principal del programa, en forma de bucle, que da a escoger entre Compositor y Conductor,
      * cuya ejecución no acabará nunca
+     * @param option opcion de persistencia escogida
      */
     public void run (String option) {
         do {
