@@ -5,8 +5,6 @@ import business.TrialTypeOptions;
 import business.playerTypes.Player;
 import presentation.ViewController;
 
-import javax.swing.text.View;
-
 /**
  * Representa el tipo de prueba Budget
  * @author Abraham Cedeño

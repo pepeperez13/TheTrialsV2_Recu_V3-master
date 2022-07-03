@@ -1,9 +1,6 @@
 package presentation;
 
-import business.Edition;
-import business.EditionManager;
-import business.TrialsManager;
-import business.TeamManager;
+import business.*;
 import business.playerTypes.Engineer;
 import business.playerTypes.Player;
 

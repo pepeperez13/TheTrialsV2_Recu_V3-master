@@ -1,11 +1,12 @@
-package presentation;
+package business;
 
-import business.TeamManager;
+
 import business.playerTypes.Doctor;
 import business.playerTypes.Engineer;
 import business.playerTypes.Master;
 import business.playerTypes.Player;
 import business.trialsTypes.*;
+import presentation.ViewController;
 
 import java.util.LinkedList;
 

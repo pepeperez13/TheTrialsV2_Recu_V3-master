@@ -1,7 +1,4 @@
-import business.DataSourceOptions;
-import business.EditionManager;
-import business.TeamManager;
-import business.TrialsManager;
+import business.*;
 import presentation.*;
 
 /**
