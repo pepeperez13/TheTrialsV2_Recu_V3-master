@@ -134,7 +134,9 @@ public class CompositorController {
                     view.showMessage("\nThe name of the introduced trial does not match the previously indicated trial.");
                 }
             } else {
-                view.showMessage("\nInvalid option.");
+                if (numTrial != trialsManager.getTrials().size() + 1) {
+                    view.showMessage("\nThe introduced trial is not valid");
+                }
             }
         } else {
             view.showMessage("\nNo trials can be deleted as there are no existing trials.");
